@@ -118,6 +118,7 @@
 
 .main-header-input::placeholder {
   opacity: 1; /* Firefox */
+  color: var(--color-white);
 }
 
 .main-header-input:focus {

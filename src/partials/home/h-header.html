@@ -1,57 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <header>
-      <div class="main-header-container">
-        <h1 class="first-heading">Filmoteka</h1>
-        <ul class="main-header-list">
-          <li class="main-header-left">
-            <ul class="main-header-list-left">
-              <li class="main-header-li">
-                <a href="" class="link logo-link">
-                  <svg class="icon-film">
-                    <use href="./images/icons.svg#icon-film"></use>
-                  </svg>
-                </a>
-              </li>
-              <li class="main-header-li logo-text">
-                <a href="" class="link">Filmoteka</a>
-              </li>
-            </ul>
+<header>
+  <div class="main-header-container">
+    <h1 class="first-heading">Filmoteka</h1>
+    <ul class="main-header-list">
+      <li class="main-header-left">
+        <a href="./partials/library/library.html" class="link logo-link">
+          <ul class="main-header-list-left">
+            <li class="main-header-li">
+              <svg class="icon-film">
+                <use href="./images/icons.svg#icon-film"></use>
+              </svg>
+            </li>
+            <li class="main-header-li logo-text">Filmoteka</li>
+          </ul>
+        </a>
+      </li>
+      <li class="main-header-right">
+        <ul class="main-header-list-right">
+          <li class="main-header-li">
+            <a href="" class="link">home</a>
           </li>
-          <li class="main-header-right">
-            <ul class="main-header-list-right">
-              <li class="main-header-li">
-                <a href="" class="link">home</a>
-              </li>
-              <li class="main-header-li">
-                <a href="" class="link">my library</a>
-              </li>
-            </ul>
+          <li class="main-header-li">
+            <a href="" class="link">my library</a>
           </li>
         </ul>
-        <form class="main-header-form">
-          <input class="main-header-input" type="text" id="search" name="search" placeholder="" />
-          <label class="main-header-label" for="search">Movie search</label>
-          <svg class="icon-search">
-            <use href="./images/icons.svg#icon-search"></use>
-          </svg>
-        </form>
-        <p class="main-header-fail">
-          Search result not successful. Enter the correct movie name and
-        </p>
-      </div>
-    </header>
-  </body>
-</html>
+      </li>
+    </ul>
+    <form class="main-header-form">
+      <input class="main-header-input" type="text" id="search" name="search" placeholder="" />
+      <label class="main-header-label" for="search">Movie search</label>
+      <svg class="icon-search">
+        <use href="./images/icons.svg#icon-search"></use>
+      </svg>
+    </form>
+    <p class="main-header-fail">Search result not successful. Enter the correct movie name and</p>
+  </div>
+</header>

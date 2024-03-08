@@ -36,7 +36,6 @@ right: 8px;
 .modal-poster{
 width: 240px;
 height: 357px;
-background-image:;
 background-repeat: no-repeat;
 background-size: cover;
 border-radius: 5px;
@@ -110,4 +109,29 @@ display: flex;
 /* @media (min-device-pixel-ratio:2),
 (-webkit-min-device-pixel-ratio: 2),
 (min-resolution: 192dpi),
-(min-resolution: 2x)
+(min-resolution: 2x) */
+
+@media screen and (min-width: 1280px) {
+.modal-content {
+    width: 806px;
+    height: 558px;
+    padding: 40px 12px;
+    display: flex;
+}
+.modal-poster {
+height: 478px;
+width: 375px;
+background-image: url(.jpg);
+margin-right: 16px;
+}
+.modal-movie-title {
+font-size: 30px;
+line-height: 35px;
+}
+.modal-about-text {
+width: 391px;
+padding-right: 12px;
+}
+.modal-movie-btn {
+width: 136px;
+} }

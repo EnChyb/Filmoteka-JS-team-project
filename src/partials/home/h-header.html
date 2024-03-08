@@ -3,7 +3,7 @@
     <h1 class="first-heading">Filmoteka</h1>
     <ul class="main-header-list">
       <li class="main-header-left">
-        <a href="./partials/library/library.html" class="link logo-link">
+        <a href="./index.html" class="link logo-link">
           <ul class="main-header-list-left">
             <li class="main-header-li">
               <svg class="icon-film">
@@ -17,21 +17,28 @@
       <li class="main-header-right">
         <ul class="main-header-list-right">
           <li class="main-header-li">
-            <a href="" class="link">home</a>
+            <a href="./index.html" class="link">home</a>
           </li>
           <li class="main-header-li">
-            <a href="" class="link">my library</a>
+            <a href="./partials/library/library.html" class="link">my library</a>
           </li>
         </ul>
       </li>
     </ul>
     <form class="main-header-form">
-      <input class="main-header-input" type="text" id="search" name="search" placeholder="" />
-      <label class="main-header-label" for="search">Movie search</label>
-      <svg class="icon-search">
-        <use href="./images/icons.svg#icon-search"></use>
-      </svg>
+      <input
+        class="main-header-input"
+        type="text"
+        id="search"
+        name="search"
+        placeholder="Movie search"
+      />
+      <button class="main-header-submit" type="submit">
+        <svg class="icon-search">
+          <use href="./images/icons.svg#icon-search"></use>
+        </svg>
+      </button>
     </form>
-    <p class="main-header-fail">Search result not successful. Enter the correct movie name and</p>
+    <p class="main-header-fail">Search result not successful. Enter the correct movie name.</p>
   </div>
 </header>

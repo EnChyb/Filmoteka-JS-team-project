@@ -38,14 +38,29 @@
 }
 */
 
+.arrow-icon {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.buttons-pages,
+.pagination-container {
+  display: flex;
+}
+
 .page-btn {
+  align-items: center;
   background-color: transparent;
-  height: 40px;
-  width: 40px;
-  border-radius: 5px;
   border: none;
+  border-radius: 5px;
+  color: inherit;
   cursor: pointer;
+  display: flex;
+  height: 40px;
+  justify-content: center;
   opacity: 100%;
+  text-decoration: none;
+  width: 40px;
 }
 
 .page-btn:hover,

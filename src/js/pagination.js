@@ -26,6 +26,7 @@ function paginate(items, itemsPerPage, paginationContainer) {
 
     for (let i = 1; i <= totalPages; i++) {
       const link = document.createElement('a');
+      link.classList.add('page-btn');
       link.href = '#';
       link.innerText = i;
 

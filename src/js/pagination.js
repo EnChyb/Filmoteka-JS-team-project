@@ -1,28 +1,3 @@
-/* <div class="movie-gallery">
-    <div class="movie-card"></div>
-  </div>
-  <div class="pagination">
-    <button class="page-btn" style="background-color: #f7f7f7">
-      <svg>
-        <use href="./images/icons.svg#icon-arrow-left"></use>
-      </svg>
-    </button>
-    <button class="page-btn">1</button>
-    <button class="page-btn">2</button>
-    <button class="page-btn">3</button>
-    <button class="page-btn">...</button>
-    <button class="page-btn hidden"></button>
-    <button class="page-btn hidden"></button>
-    <button class="page-btn hidden"></button>
-    <button class="page-btn hidden"></button>
-    <button class="page-btn">n</button>
-    <button class="page-btn" style="background-color: #f7f7f7">
-      <svg>
-        <use href="./images/icons.svg#icon-arrow-right"></use>
-      </svg>
-    </button>
-  </div> */
-
 // const buttons = document.querySelectorAll('.page-btn');
 // buttonsArray = Array.from(buttons);
 // console.log(buttonsArray);

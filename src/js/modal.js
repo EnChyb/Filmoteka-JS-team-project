@@ -41,9 +41,10 @@ function renderModal(data) {
   filmModal.innerHTML = `
     <div class="modal-content">
         <button class = "modal-close-btn">
-        <svg class="icon-close">
-        <use href="./images/icons.svg#icon-close"></use>
-    </svg>
+        <svg width="30" height="30" viewbox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 8L22 22" stroke="black" stroke-width="2"></path>
+                    <path d="M8 22L22 8" stroke="black" stroke-width="2"></path>
+                </svg>
         </button>
         <div class="modal-poster">
             ${getPosterImg(data.poster_path, data.title)}

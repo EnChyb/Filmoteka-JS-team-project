@@ -1,20 +1,21 @@
-:root {
+/*:root {
   --color-white: #fff;
   --color-black: #000;
   --font-family: "Roboto", sans-serif;
+}*/
+
+.movie-gallery {
+  background-color: #fff;
+  color: #000;
 }
 
-.main-container {
-  background-color: var(--color-white);
-  color: var(--color-black);
-}
-
-.film-card-container {
+.movie-card {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   column-gap: 20px;
 }
 
+/*
 @media screen and (min-width: 768px) {
   .container {
     grid-template-columns: repeat(4, 1fr);
@@ -27,4 +28,37 @@
     grid-template-columns: repeat(12, 1fr);
     column-gap: 16px;
   }
+}
+
+*/
+
+/*
+.pagination {
+}
+*/
+
+.page-btn {
+  background-color: transparent;
+  height: 40px;
+  width: 40px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  opacity: 100%;
+}
+
+.page-btn:hover,
+.page-btn:focus,
+.page-btn:active {
+  background-color: #ff6b08;
+  color: white;
+}
+
+.hidden {
+  display: none;
+}
+
+.selected {
+  background-color: #ff6b08;
+  color: white;
 }

@@ -1,3 +1,30 @@
+:root {
+  font-family: "Roboto", sans-serif;
+}
+
+li {
+margin: 0;
+padding-left: 0;
+list-style: none;
+}
+.icon-close {
+  width: 30px;
+height: 30px;
+color: #000;
+}
+
+.modal-filmoteka {
+width: 100%;
+height: 100%;
+opacity: 1;
+background-color: #000c;
+transition: all .5s;
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%) scale(1);
+}
+
 .modal-window {
   max-height: 100%;
   width: 280px;
@@ -103,16 +130,47 @@
 }
 
 .modal-btn-list {
+  height: 44px;
+  text-align: center;
   flex-wrap: nowrap;
   display: flex;
 }
 
-/* @media (min-device-pixel-ratio:2),
-(-webkit-min-device-pixel-ratio: 2),
-(min-resolution: 192dpi),
-(min-resolution: 2x) */
+.modal-movie-btn {
+ text-align: center;
+width: 110px;
+height: 44px;
+text-transform: uppercase;
+cursor: pointer;
+background-color: #fff;
+border: 1px solid #000;
+border-radius: 5px;
+margin-right: 20px;
+font-size: 12px;
+font-weight: 500;
+line-height: 16px;
+transition: color .25s cubic-bezier(.4, 0, .2, 1), background-color .25s cubic-bezier(.4, 0, .2, 1), box-shadow .25s cubic-bezier(.4, 0, .2, 1);
+}
+
+  .modal-movie-btn:hover {
+  color: #fff;
+  box-shadow: none;
+  background-color: #ff6b08;
+  border: 1px solid #ff6b08;
+  }
+
+/* TABLET */
+
+/* DESKTOP */
 
 @media screen and (min-width: 1280px) {
+
+  .modal-window {
+  width: 806px;
+  height: 558px;
+  overflow: hidden;
+  }
+
   .modal-content {
     width: 806px;
     height: 558px;
@@ -122,7 +180,7 @@
   .modal-poster {
     height: 478px;
     width: 375px;
-    /* background-image: url(.jpg); */
+    /* background-image: url(); */
     margin-right: 16px;
   }
   .modal-movie-title {
@@ -130,6 +188,7 @@
     line-height: 35px;
   }
   .modal-about-text {
+    font-weight: 500;
     width: 391px;
     padding-right: 12px;
   }

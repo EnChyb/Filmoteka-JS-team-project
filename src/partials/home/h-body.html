@@ -1,11 +1,20 @@
 <main>
-  <div class="movie-gallery">
-    <div class="movie-card">
-      <!-- Film cards here-->
-    </div>
+  <div class="movie-gallery" id="movie-items">
+    <!-- <div class="movie-card">
+    </div> -->
+    <ul>
+      <li>card 1</li>
+      <li>card 2</li>
+      <li>card 3</li>
+      <li>card 4</li>
+      <li>card 5</li>
+    </ul>
   </div>
-  <div class="pagination">
-    <button class="page-btn" style="background-color: #f7f7f7">
+  <button class="page-btn" style="background-color: #f7f7f7">
+    <svg><use href="./images/icons.svg#icon-arrow-left"></use></svg>
+  </button>
+  <div class="pagination-container" id="pagination">
+    <!-- <button class="page-btn" style="background-color: #f7f7f7">
       <svg><use href="./images/icons.svg#icon-arrow-left"></use></svg>
     </button>
     <button class="page-btn">1</button>
@@ -19,6 +28,9 @@
     <button class="page-btn">n</button>
     <button class="page-btn" style="background-color: #f7f7f7">
       <svg><use href="./images/icons.svg#icon-arrow-right"></use></svg>
-    </button>
+    </button> -->
   </div>
+  <button class="page-btn" style="background-color: #f7f7f7">
+    <svg><use href="./images/icons.svg#icon-arrow-right"></use></svg>
+  </button>
 </main>

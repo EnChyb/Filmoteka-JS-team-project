@@ -7,13 +7,14 @@
 .movie-gallery {
   background-color: #fff;
   color: #000;
-}
-
-.movie-card {
+  /* 3 lines below taken from movie-card */
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   column-gap: 20px;
 }
+
+/* .movie-card {
+} */
 
 /*
 @media screen and (min-width: 768px) {

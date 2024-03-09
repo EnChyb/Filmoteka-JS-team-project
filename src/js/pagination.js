@@ -1,5 +1,6 @@
 const prevButton = document.querySelector('.prev');
 const nextButton = document.querySelector('.next');
+let currentPage = 1;
 
 function paginate(items, itemsPerPage, paginationContainer) {
   let currentPage = 1;
@@ -122,10 +123,8 @@ var data = [
   100,
 ];
 
-let currentPage = 1;
-
-for (var i = 0; i < data.length; i++) {
-  if (i >= (currentPage - 1) * itemsPerPage && i < currentPage * itemsPerPage) {
-    console.log(data[i]);
-  }
-}
+// for (var i = 0; i < data.length; i++) {
+//   if (i >= (currentPage - 1) * itemsPerPage && i < currentPage * itemsPerPage) {
+//     console.log(data[i]);
+//   }
+// }

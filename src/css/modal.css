@@ -54,6 +54,9 @@ color: #000000;
 transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1),
         background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
+.modal-close-btn path {
+  stroke: #000;
+}
 
 .modal-poster {
   width: 240px;
@@ -193,7 +196,7 @@ border: 1px solid #ff6b08;
   .modal-movie-btn {
     width: 136px;
   }
-    .modal-btn-list-item {
-      width: 136px;
+.modal-btn-list-item {
+  width: 136px;
     }
 }

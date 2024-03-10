@@ -12,7 +12,7 @@ const db = firebase.firestore();
 
 const galleryOfMovies = document.querySelector('.movie-gallery');
 const addToQueueButton = document.querySelector('.add-watched');
-const queueButton = document.querySelector('.watched');
+const queueButton = document.querySelector('.watched'); //
 
 addToQueueButton.addEventListener('click', data => {
   db.collection('movies').set({

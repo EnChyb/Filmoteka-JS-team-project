@@ -1,4 +1,6 @@
-const filmModal = document.querySelector('.js-movie-modal');
+import { showBackdrop, closeBackdrop } from './backdrop.js';
+
+const filmModal = document.querySelector('.movie-modal');
 const filmModalMask = document.querySelector('.modal-filmoteka');
 const modalBody = document.querySelector('body');
 
@@ -60,13 +62,17 @@ function renderModal(data) {
         </div>
         <div class="modal-info-value">
             <p class="info-value">
-                <span class="info-value__vote">${data.vote_average.toFixed(1)}</span>&ensp;/&ensp;
+                <span class="info-value__vote">${data.vote_average.toFixed(
+                  1
+                )}</span>&ensp;/&ensp; 
 
                 <span class="js-info-value__votes">${data.vote_count}</span>
             </p>
             <p class="info-value">${data.popularity}</p>
             <p class="info-value">${data.original_title}</p>
-            <p class="info-value">${data.genres.map(genre => genre.name).join(', ')}</p>
+            <p class="info-value">${data.genres
+              .map(genre => genre.name)
+              .join(', ')}</p>
         </div>
     </div>
     <h2 class="modal-movie-about">About </h2>

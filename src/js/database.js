@@ -93,6 +93,7 @@ const detailsOptions = {
   },
 };
 
+
 async function searchDetails() {
   const response = await axios.get(
     `https://api.themoviedb.org/3/movie/550?api_key=a53cba9b0d8796262c7859f0f1e4d0eb`,

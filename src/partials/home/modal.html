@@ -2,13 +2,14 @@
     <link rel="stylesheet" href="/src/css/modal.css">
 </head>
     <body>
-<div class="modal-filmoteka" is-hidden></div>
+<div class="modal-filmoteka is-hidden" data-modal></div>
 <div class="modal-window">
     <div class="modal-content">
 
-<button class="modal-close-btn" type="button">
-    <svg class="icon-close">
-        <use href="./images/icons.svg#icon-close"></use>
+<button class="modal-close-btn" type="button" data-modal-close>
+    <svg width="30" height="30" viewbox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 8L22 22" stroke="black" stroke-width="2"></path>
+        <path d="M8 22L22 8" stroke="black" stroke-width="2"></path>
     </svg>
 </button>
 
@@ -35,16 +36,18 @@
 <h2 class="modal-movie-about">About</h2>
 <p class="modal-about-text" id="about-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae expedita magni quasi similique eos nam? Esse cupiditate corporis culpa, sequi ex quibusdam rerum quidem voluptates eos non officiis quasi praesentium, illo impedit aut. Id cupiditate nulla tempore perferendis vero. Eos, facilis totam hic quos maiores et dolorum esse ut amet.</p>
 
-<ul class="modal-btn-list link">
+<ul class="modal-btn-list">
     <li class="modal-btn-list-item">
-        <button class="modal-movie-btn link add-watched" type="button">Add to watched</button>
+        <button class="modal-movie-btn add-watched" type="button">Add to watched</button>
     </li>
     <li class="modal-btn-list-item">
-        <button class="modal-movie-btn link add-queue" type="button">Add to queue</button>
+        <button class="modal-movie-btn add-queue" type="button">Add to queue</button>
     </li>
 </ul>
+
 </div>
 
 </div>
 </div>
+<script src="/src/js/backdrop.js"></script>
 </body>

@@ -1,13 +1,14 @@
-const backdrop = document.querySelector('.modal-filmoteka');
-const body = document.querySelector('body');
+(() => {
+  const refs = {
+    openModalBtn: document.querySelector("[data-modal-open]"),
+    closeModalBtn: document.querySelector("[data-modal-close]"),
+    modal: document.querySelector("[data-modal]"),
+  };
 
-export function showBackdrop() {
-  backdrop.classList.remove('is-hidden');
-  body.style = `overflow-y: hidden`;
-}
+  refs.openModalBtn.addEventListener("click", toggleModal);
+  refs.closeModalBtn.addEventListener("click", toggleModal);
 
-export function closeBackdrop() {
-  backdrop.classList.add('is-hidden');
-  backdrop.innerHTML = '';
-  body.style = `overflow-y: overlay`;
-}
+  function toggleModal() {
+    refs.modal.classList.toggle("is-hidden");
+  }
+})();

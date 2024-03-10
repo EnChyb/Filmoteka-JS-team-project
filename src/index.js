@@ -2,4 +2,5 @@
 
 import './js/database.js';
 import './js/modal.js';
+import './js/backdrop.js';
 //import '';

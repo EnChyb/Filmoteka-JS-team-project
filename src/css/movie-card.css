@@ -20,7 +20,7 @@
   .movie-card-template {
     max-height: 700px;
     max-width: 395px;
-    /* gap: 20px; */
+    gap: 20px;
   }
 }
 

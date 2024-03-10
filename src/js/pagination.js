@@ -71,9 +71,41 @@ function paginate(items, itemsPerPage, paginationContainer) {
 
   showItems(currentPage);
   setupPagination();
+
+  const buttons = document.querySelectorAll('.page-btn');
+  const buttonsArray = Array.from(buttons);
+
+  // Hiding pages that are far away and putting '...' in their place
+
+  const hiddenLeft = [];
+  const hiddenRight = [];
+
+  buttonsArray.forEach(button => {
+    button.addEventListener('click', hidePages);
+    function hidePages() {
+      if (currentPage >= 4) {
+        for (let i = 2; i <= currentPage - 3; i++) {
+          hiddenLeft.push(i);
+          // return hiddenLeft;
+        }
+        // const leftToHide = [];
+        // for (let i = 0; i <= hiddenLeft)
+        // leftToHide.forEach(button => {
+        //   button.innerHTML = '.';
+        // })
+      }
+
+      if (currentPage + 3 <= totalPages) {
+        for (let i = currentPage + 3; i < totalPages; i++) {
+          hiddenRight.push(i);
+          return hiddenRight;
+        }
+      }
+    }
+  });
 }
 
-// TUTAJ SĄ KARTY
+// CARDS
 
 
 const items = searchPopular();
@@ -129,9 +161,3 @@ var data = [
   76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99,
   100,
 ];
-
-// for (var i = 0; i < data.length; i++) {
-//   if (i >= (currentPage - 1) * itemsPerPage && i < currentPage * itemsPerPage) {
-//     console.log(data[i]);
-//   }
-// }

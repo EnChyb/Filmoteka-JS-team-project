@@ -9,7 +9,7 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
-
+//
 const galleryOfMovies = document.querySelector('.movie-gallery');
 const addToQueueButton = document.querySelector('.add-watched');
 const queueButton = document.querySelector('.watched');

@@ -11,13 +11,10 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
 const galleryOfMovies = document.querySelector('.movie-gallery');
-const cardOfMovie = document.querySelector('.movie-card');
-const addToWatchedButton = document.querySelector('.add-watched');
-const modal = document.querySelector('.modal-filmoteka');
-const watchedButton = document.querySelector('.watched');
+const addToQueueButton = document.querySelector('.add-watched');
+const queueButton = document.querySelector('.watched');
 
-// ma za zadanie dodanie danych do firebase
-addToWatchedButton.addEventListener('click', data => {
+addToQueueButton.addEventListener('click', data => {
   db.collection('movies').set({
     image: data.poster_path,
     alt: data.outerview,
@@ -28,8 +25,7 @@ addToWatchedButton.addEventListener('click', data => {
   });
 });
 
-// ma za zadanie wyświetlenie filmów
-watchedButton.addEventListener('click', () => {
+queueButton.addEventListener('click', () => {
   const markup = db
     .collection('movies')
     .get()

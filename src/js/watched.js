@@ -18,7 +18,7 @@ const watchedButton = document.querySelector('.watched');
 
 // ma za zadanie dodanie danych do firebase
 addToWatchedButton.addEventListener('click', data => {
-  db.collection('movies').add({
+  db.collection('movies').set({
     image: data.poster_path,
     alt: data.outerview,
     name: data.title,

@@ -9,3 +9,39 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
+
+const galleryOfMovies = document.querySelector('.movie-gallery');
+const addToQueueButton = document.querySelector('.add-watched');
+const queueButton = document.querySelector('.watched');
+
+addToQueueButton.addEventListener('click', data => {
+  db.collection('movies').set({
+    image: data.poster_path,
+    alt: data.outerview,
+    name: data.title,
+    tags: data.genres_ids,
+    year: data.release_date,
+    grade: data.vote_average,
+  });
+});
+
+queueButton.addEventListener('click', () => {
+  const markup = db
+    .collection('movies')
+    .get()
+    .map(({ image, alt, name, tags, year, grade }) => {
+      `<div class="movie-card-template">
+      <a class="movie-image">
+        <img src="${image}" alt="${alt}" loading="lazy" />
+      </a>
+      <div class="movie-info">
+        <p class="movie-name">${name}</p>
+        <div class="tags-grade-wrap">
+          <p class="movie-tags-year">${tags} | ${year}</p>
+          <p class="movie-grade">${grade}</p>
+      </div>
+    </div>`;
+    })
+    .join('');
+  galleryOfMovies.insertAdjacentHTML('beforeend', markup);
+});

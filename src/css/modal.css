@@ -40,6 +40,7 @@ opacity: 1;
 transition: all 0.5s ease 0s;
 z-index: 150;
 }
+
 .modal-content {
 padding: 48px 20px 40px 20px;
 }
@@ -58,6 +59,7 @@ color: #000000;
 transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1),
         background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 .modal-close-btn path {
   stroke: #000;
 }
@@ -94,6 +96,13 @@ transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1),
 .modal-movie {
   margin-bottom: 20px;
   display: flex;
+}
+
+.modal-movie-info-name {
+flex-direction: column;
+font-size: 12px;
+line-height: 16px;
+display: flex;
 }
 
 .info-name {
@@ -173,21 +182,25 @@ border: 1px solid #ff6b08;
     overflow: hidden;
   }
   .modal-content {
-    width: 704px;
-    height: 552px;
+    display: flex;
+    padding: 40px 72px 40px 36px;
   }
   .modal-poster {
     width: 264px;
     height: 373.55px;
+    margin-right: 68px;
+  }
+  .modal-info-film {
+    max-width: 391px
   }
   .modal-movie-title {
+    max-width: 264px;
     font-size: 20px;
     line-height: 23.44px;
   }
   .modal-about-text {
     width: 264px;
     height: 236px;
-    padding-right: 12px;
     font-weight: 500;
   }
   .modal-movie-btn {

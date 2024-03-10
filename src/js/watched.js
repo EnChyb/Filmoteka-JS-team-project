@@ -16,6 +16,7 @@ const addToWatchedButton = document.querySelector('.add-watched');
 const modal = document.querySelector('.modal-filmoteka');
 const watchedButton = document.querySelector('.watched');
 
+// ma za zadanie dodanie danych do firebase
 addToWatchedButton.addEventListener('click', data => {
   db.collection('movies').add({
     image: data.poster_path,
@@ -27,6 +28,7 @@ addToWatchedButton.addEventListener('click', data => {
   });
 });
 
+// ma za zadanie wyświetlenie filmów
 watchedButton.addEventListener('click', () => {
   const markup = db
     .collection('movies')

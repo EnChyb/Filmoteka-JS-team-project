@@ -8,7 +8,7 @@ filmModalMask.addEventListener('click', closeModal);
 
 export function showModal(data) {
   renderModal(data);
-  const closeBtn = document.querySelector('.modal-close-btn');
+  const closeBtn = document.querySelector('modal-close-btn');
   closeBtn.addEventListener('click', closeModal);
   filmModal.classList.remove('is-hidden');
   showBackdrop();
@@ -18,6 +18,7 @@ export function showModal(data) {
 }
 
 function closeModal(e) {
+  console.log('Close modal function called');
   e.preventDefault();
   filmModal.classList.add('is-hidden');
   closeBackdrop();

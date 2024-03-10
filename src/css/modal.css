@@ -166,6 +166,36 @@ border: 1px solid #ff6b08;
 
 /* TABLET */
 
+@media screen and (min-width: 768px) {
+  .modal-window {
+    width: 704px;
+    height: 552px;
+    overflow: hidden;
+  }
+  .modal-content {
+    width: 704px;
+    height: 552px;
+  }
+  .modal-poster {
+    width: 264px;
+    height: 373.55px;
+  }
+  .modal-movie-title {
+    font-size: 20px;
+    line-height: 23.44px;
+  }
+  .modal-about-text {
+    width: 264px;
+    height: 236px;
+    padding-right: 12px;
+    font-weight: 500;
+  }
+  .modal-movie-btn {
+    width: 125.03px;
+    height: 44px;
+  }
+}
+
 /* DESKTOP */
 
 @media screen and (min-width: 1280px) {
@@ -200,7 +230,5 @@ border: 1px solid #ff6b08;
   .modal-movie-btn {
     width: 136px;
   }
-.modal-btn-list-item {
-  width: 136px;
-    }
 }
+

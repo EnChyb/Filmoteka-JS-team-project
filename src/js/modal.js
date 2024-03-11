@@ -1,4 +1,4 @@
-const filmModal = document.querySelector('.movie-modal');
+/* const filmModal = document.querySelector('.movie-modal');
 const filmModalMask = document.querySelector('.modal-filmoteka');
 const modalBody = document.querySelector('body');
 
@@ -86,4 +86,5 @@ function renderModal(data) {
     </ul>
         </div>
     </div>`;
-}
+} */
+

@@ -1,5 +1,3 @@
-import { showBackdrop, closeBackdrop } from './backdrop.js';
-
 const filmModal = document.querySelector('.movie-modal');
 const filmModalMask = document.querySelector('.modal-filmoteka');
 const modalBody = document.querySelector('body');

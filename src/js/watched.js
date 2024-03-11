@@ -25,6 +25,7 @@ addToWatchedButton.addEventListener('click', data => {
     tags: data.genres_ids,
     year: data.release_date,
     grade: data.vote_average,
+    console.log(data.id);
   });
 });
 

@@ -3,6 +3,7 @@ const photoCard = document.querySelector('.movie-gallery');
 
 const prevButton = document.querySelector('.prev');
 const nextButton = document.querySelector('.next');
+
 let currentPage = 1;
 
 function paginate(items, itemsPerPage, paginationContainer) {
@@ -31,6 +32,7 @@ function paginate(items, itemsPerPage, paginationContainer) {
     for (let i = 1; i <= totalPages; i++) {
       const link = document.createElement('a');
       link.classList.add('page-btn');
+      link.classList.add(`page-${i}`);
       link.href = '#';
       link.innerText = i;
 
@@ -75,33 +77,52 @@ function paginate(items, itemsPerPage, paginationContainer) {
   const buttons = document.querySelectorAll('.page-btn');
   const buttonsArray = Array.from(buttons);
 
-  // Hiding pages that are far away and putting '...' in their place
+  // Hiding pages that are far away and putting '...' in their place (ง ͠ಥ_ಥ)ง
 
-  const hiddenLeft = [];
-  const hiddenRight = [];
+  const firstPage = document.querySelector('.page-1');
+  const lastPage = document.querySelector(`.page-${totalPages}`);
+
+  function hidePages() {
+    for (let i = 1; i <= totalPages; i++) {
+      const link = pagination.querySelector(`.page-${i}`);
+      if ((i < currentPage - 2 || i > currentPage + 2) && i !== 1 && i !== totalPages) {
+        link.style.display = 'none';
+      } else {
+        link.style.display = 'flex';
+      }
+    }
+
+    if (currentPage > 3) {
+      if (!document.querySelector('.page-dots-left')) {
+        const leftDots = "<div class='page-dots-left page-btn'>...</div>";
+        firstPage.insertAdjacentHTML('afterend', leftDots);
+      }
+    } else {
+      const leftDots = document.querySelector('.page-dots-left');
+      if (leftDots) {
+        leftDots.remove();
+      }
+    }
+
+    if (currentPage + 3 <= totalPages) {
+      if (!document.querySelector('.page-dots-right')) {
+        const rightDots = "<div class='page-dots-right page-btn'>...</div>";
+        lastPage.insertAdjacentHTML('beforebegin', rightDots);
+      }
+    } else {
+      const rightDots = document.querySelector('.page-dots-right');
+      if (rightDots) {
+        rightDots.remove();
+      }
+    }
+  }
+
+  hidePages();
+
+  // Everytime a button is clicked
 
   buttonsArray.forEach(button => {
     button.addEventListener('click', hidePages);
-    function hidePages() {
-      if (currentPage >= 4) {
-        for (let i = 2; i <= currentPage - 3; i++) {
-          hiddenLeft.push(i);
-          // return hiddenLeft;
-        }
-        // const leftToHide = [];
-        // for (let i = 0; i <= hiddenLeft)
-        // leftToHide.forEach(button => {
-        //   button.innerHTML = '.';
-        // })
-      }
-
-      if (currentPage + 3 <= totalPages) {
-        for (let i = currentPage + 3; i < totalPages; i++) {
-          hiddenRight.push(i);
-          return hiddenRight;
-        }
-      }
-    }
   });
 }
 

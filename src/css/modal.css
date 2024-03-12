@@ -62,8 +62,13 @@ li {
   border: none;
   background: #ffffff;
   color: #000000;
-  transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1),
     background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-close-btn:hover,
+.modal-close-btn:focus {
+  background-color: #ff6b08;
 }
 
 .modal-close-btn path {

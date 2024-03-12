@@ -7,7 +7,7 @@ const nextButton = document.querySelector('.next');
 let currentPage = 1;
 
 function paginate(items, itemsPerPage, paginationContainer) {
-  let currentPage = 1;
+  // let currentPage = 1;
   const totalPages = Math.ceil(items.length / itemsPerPage);
 
   function showItems(page) {
@@ -123,15 +123,39 @@ function paginate(items, itemsPerPage, paginationContainer) {
 
   buttonsArray.forEach(button => {
     button.addEventListener('click', hidePages);
+    button.addEventListener('click', () => {
+      setupPagination();
+    });
   });
 }
 
+// Fetch movie data and paginate
+async function fetchAndPaginate() {
+  const items = await searchPopular();
+  const itemsPerPage = 5;
+  paginate(items, itemsPerPage, paginationContainer);
+}
+
+// Fetch popular movies data
+export async function searchPopular() {
+  const response = await axios.get(
+    'https://api.themoviedb.org/3/movie/popular?api_key=a53cba9b0d8796262c7859f0f1e4d0eb',
+  );
+  const database = response.data.results;
+  console.log(database);
+  return database;
+}
+
+// Call fetchAndPaginate function to start pagination
+fetchAndPaginate();
+
+console.log(items);
+
 // CARDS
 
+// const items = searchPopular();
 
-const items = searchPopular();
-
-// const items = [
+//const items = [
 //  'Item 1',
 //  'Item 2',
 //  'Item 3',
@@ -148,7 +172,7 @@ const items = searchPopular();
 //  'Item 14',
 //  'Item 15',
 //  'Item 16',
-// 'Item 17',
+//  'Item 17',
 //  'Item 18',
 //  'Item 19',
 //  'Item 20',
@@ -157,28 +181,27 @@ const items = searchPopular();
 //  'Item 23',
 //  'Item 24',
 //  'Item 25',
-  //'Item 26',
-  //'Item 27',
-  //'Item 28',
- // 'Item 29',
-  //'Item 30',
-  //'Item 31',
-  //'Item 32',
-  //'Item 33',
-  //'Item 34',
-  //'Item 35',
+//  'Item 26',
+//  'Item 27',
+//  'Item 28',
+//  'Item 29',
+//  'Item 30',
+//  'Item 31',
+//  'Item 32',
+//  'Item 33',
+//  'Item 34',
+//  'Item 35',
 //];
 
+// const itemsPerPage = 5;
+// const paginationContainer = '#pagination';
 
-const itemsPerPage = 5;
-const paginationContainer = '#pagination';
+// paginate(items, itemsPerPage, paginationContainer);
 
-paginate(items, itemsPerPage, paginationContainer);
-
-var data = [
-  1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27,
-  28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51,
-  52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75,
-  76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99,
-  100,
-];
+// var data = [
+//   1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27,
+//   28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51,
+//   52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75,
+//   76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99,
+//   100,
+// ];

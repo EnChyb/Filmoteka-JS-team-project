@@ -1,13 +1,19 @@
-import { searchPopular } from './database';
+import { searchPopular, genresList } from './database';
 const photoCard = document.querySelector('.movie-gallery');
 
 const prevButton = document.querySelector('.prev');
 const nextButton = document.querySelector('.next');
 
-let currentPage = 1;
+let currentPage;
+let items;
+let genres;
 
-function paginate(items, itemsPerPage, paginationContainer) {
-  let currentPage = 1;
+async function paginate(items, itemsPerPage, paginationContainer) {
+  items = await searchPopular();
+  genres = await genresList();
+  // console.log(genres);
+
+  currentPage = 1;
   const totalPages = Math.ceil(items.length / itemsPerPage);
 
   function showItems(page) {
@@ -18,11 +24,27 @@ function paginate(items, itemsPerPage, paginationContainer) {
     const itemsContainer = document.querySelector('#movie-items');
     itemsContainer.innerHTML = '';
 
-    pageItems.forEach(item => {
-      const li = document.createElement('li');
-      li.innerText = item;
-      itemsContainer.appendChild(li);
-    });
+    const markup = pageItems
+      .map(
+        ({ poster_path, title, vote_average, release_date, genre_ids, id }) =>
+          `
+        <div class="movie-card-template" data-modal-open-window data-movie-id="${id}">
+          <a class="movie-image">
+           <img src="https://image.tmdb.org/t/p/w500${poster_path}?api_key=a53cba9b0d8796262c7859f0f1e4d0eb"
+            alt="film-poster" />
+          </a>
+          <div class="movie-info">
+            <p class="movie-name">${title}</p>
+            <div class="tags-grade-wrap">
+              <p class="movie-tags-year">${genre_ids} | ${release_date.slice(0, 4)}</p>
+              <p class="movie-grade">${vote_average}</p>
+            </div>
+          </div>
+        </div>`,
+      )
+      .join('');
+    // console.log(genre_ids);
+    photoCard.insertAdjacentHTML('beforeend', markup);
   }
 
   function setupPagination() {
@@ -128,8 +150,7 @@ function paginate(items, itemsPerPage, paginationContainer) {
 
 // CARDS
 
-
-const items = searchPopular();
+// const items = searchPopular();
 
 // const items = [
 //  'Item 1',
@@ -157,18 +178,17 @@ const items = searchPopular();
 //  'Item 23',
 //  'Item 24',
 //  'Item 25',
-  //'Item 26',
-  //'Item 27',
-  //'Item 28',
- // 'Item 29',
-  //'Item 30',
-  //'Item 31',
-  //'Item 32',
-  //'Item 33',
-  //'Item 34',
-  //'Item 35',
+//'Item 26',
+//'Item 27',
+//'Item 28',
+// 'Item 29',
+//'Item 30',
+//'Item 31',
+//'Item 32',
+//'Item 33',
+//'Item 34',
+//'Item 35',
 //];
-
 
 const itemsPerPage = 5;
 const paginationContainer = '#pagination';

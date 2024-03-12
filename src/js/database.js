@@ -70,8 +70,8 @@ export async function searchPopular() {
         <p class="movie-name">${title}</p>
         <div class="tags-grade-wrap">
           <p class="movie-tags-year">${genre_ids} | ${release_date}</p>
-          <p class="movie-grade">Grade: ${vote_average}</p>
-          <p class="movie-grade">Votes: ${vote_count}</p>
+          <p class="movie-grade">${vote_average}</p>
+          <p class="movie-grade" style="display: none;">${vote_count}</p>
           </div>
     </div>
     </div>
@@ -92,7 +92,6 @@ const detailsOptions = {
     accept: 'application/json',
   },
 };
-
 
 async function searchDetails() {
   const response = await axios.get(

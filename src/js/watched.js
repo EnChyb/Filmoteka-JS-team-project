@@ -48,5 +48,5 @@ watchedButton.addEventListener('click', () => {
     </div>`;
     })
     .join('');
-  galleryOfMovies.insertAdjacentHTML('beforeend', markup);
+  cardOfMovie.insertAdjacentHTML('afterstart', markup);
 });

@@ -1,4 +1,4 @@
-import { searchPopular, genresList } from './database';
+import { searchPopular, genresList, popularOptions } from './database';
 const photoCard = document.querySelector('.movie-gallery');
 const paginationContainer = document.querySelector('#pagination');
 const prevButton = document.querySelector('.prev');
@@ -7,7 +7,7 @@ const nextButton = document.querySelector('.next');
 let currentPage = 1;
 let itemsPerPage = 2;
 let items;
-let genres;
+// let genres;
 
 // fetching informacji do kart
 
@@ -81,10 +81,23 @@ function setupPagination() {
 
 function updatePagination() {
   const totalPages = Math.ceil(items.length / itemsPerPage);
-  const currentPageDisplay = document.createElement('span');
-  currentPageDisplay.textContent = `Page ${currentPage} of ${totalPages}`;
   paginationContainer.innerHTML = '';
-  paginationContainer.appendChild(currentPageDisplay);
+
+  for (let i = 1; i <= totalPages; i++) {
+    const pageButton = document.createElement('button');
+    pageButton.textContent = i;
+    pageButton.classList.add('page-btn');
+    if (i === currentPage) {
+      pageButton.classList.add('active');
+    }
+    pageButton.addEventListener('click', () => {
+      currentPage = i;
+      showItems(currentPage);
+      updatePagination();
+    });
+    paginationContainer.appendChild(pageButton);
+  }
+  // console.log(popularOptions.params.page);
 }
 
 async function initialize() {

@@ -38,7 +38,7 @@ async function searchMovie() {
 //Wyszukiwarka popularnych na główną
 //ze zmiennych tylko to ID i język
 //------------------------------------------------------//
-const popularOptions = {
+export const popularOptions = {
   params: { language: language, page: pageNum },
   headers: {
     accept: 'application/json',

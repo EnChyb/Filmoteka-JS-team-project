@@ -4,24 +4,31 @@ const paginationContainer = document.querySelector('#pagination');
 const prevButton = document.querySelector('.prev');
 const nextButton = document.querySelector('.next');
 
+let activeButton;
 let currentPage = 1;
-let itemsPerPage = 2;
+// let itemsPerPage = 20;
 let items;
+let popularOptionsCopy = { ...popularOptions }; // Create a copy of popularOptions
 // let genres;
+let pageNum = popularOptionsCopy.params.page;
+console.log(popularOptionsCopy.params.page);
 
 // fetching informacji do kart
 
 async function fetchItems() {
+  pageNum = currentPage;
   items = await searchPopular();
-  genres = await genresList();
+  // genres = await genresList();
+  console.log(items);
 }
 
 // wyświetl karty
 
 function showItems(page) {
-  const startIndex = (page - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const pageItems = items.slice(startIndex, endIndex);
+  // const startIndex = (page - 1) * itemsPerPage;
+  // const endIndex = startIndex + itemsPerPage;
+  // const pageItems = items.slice(startIndex, endIndex);
+  let pageItems = items;
 
   const itemsContainer = document.querySelector('#movie-items');
   itemsContainer.innerHTML = '';
@@ -65,12 +72,19 @@ function showPrev() {
 // pokaż następną stronę
 
 function showNext() {
-  const totalPages = Math.ceil(items.length / itemsPerPage);
+  // const totalPages = Math.ceil(items.length / itemsPerPage);
+  const totalPages = 5;
   if (currentPage < totalPages) {
     currentPage++;
     showItems(currentPage);
     updatePagination();
   }
+}
+
+function updatePage() {
+  popularOptionsCopy.params.page = currentPage; // Update page in popularOptionsCopy
+  showItems(currentPage);
+  updatePagination();
 }
 
 function setupPagination() {
@@ -80,7 +94,8 @@ function setupPagination() {
 }
 
 function updatePagination() {
-  const totalPages = Math.ceil(items.length / itemsPerPage);
+  // const totalPages = Math.ceil(items.length / itemsPerPage);
+  const totalPages = 5;
   paginationContainer.innerHTML = '';
 
   for (let i = 1; i <= totalPages; i++) {
@@ -92,17 +107,24 @@ function updatePagination() {
     }
     pageButton.addEventListener('click', () => {
       currentPage = i;
-      showItems(currentPage);
-      updatePagination();
+      // showItems(currentPage);
+      // updatePagination();
+      updatePage();
     });
     paginationContainer.appendChild(pageButton);
   }
   // console.log(popularOptions.params.page);
+  activeButton = document.querySelector('.active');
+  // console.log(activeButton);
+  currentPage = activeButton.innerHTML;
+  console.log(currentPage);
+
+  fetchItems();
 }
 
 async function initialize() {
   await fetchItems();
-  showItems(currentPage);
+  await showItems(currentPage);
   setupPagination();
 }
 

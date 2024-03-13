@@ -9,10 +9,14 @@ let itemsPerPage = 2;
 let items;
 let genres;
 
+// fetching informacji do kart
+
 async function fetchItems() {
   items = await searchPopular();
   genres = await genresList();
 }
+
+// wyświetl karty
 
 function showItems(page) {
   const startIndex = (page - 1) * itemsPerPage;
@@ -21,6 +25,8 @@ function showItems(page) {
 
   const itemsContainer = document.querySelector('#movie-items');
   itemsContainer.innerHTML = '';
+
+  // wnętrze karty
 
   const markup = pageItems
     .map(
@@ -42,8 +48,11 @@ function showItems(page) {
     )
     .join('');
   // console.log(genre_ids);
+  // podłączenie karty do strony
   photoCard.insertAdjacentHTML('beforeend', markup);
 }
+
+// pokaż poprzednią stronę
 
 function showPrev() {
   if (currentPage > 1) {
@@ -52,6 +61,8 @@ function showPrev() {
     updatePagination();
   }
 }
+
+// pokaż następną stronę
 
 function showNext() {
   const totalPages = Math.ceil(items.length / itemsPerPage);

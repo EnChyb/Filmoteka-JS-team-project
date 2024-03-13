@@ -3,7 +3,7 @@ const overlay = document.querySelector('.modal-filmoteka');
 const modalBody = document.querySelector('body');
 const closeModalBtn = document.querySelector('.modal-close-btn');
 
-function openModal(e) {
+export function openModal(e) {
   e.preventDefault();
   filmModal.classList.remove('is-hidden');
   overlay.classList.remove('is-hidden');
@@ -19,22 +19,22 @@ overlay.addEventListener('click', closeModal);
 closeModalBtn.addEventListener('click', closeModal);
 window.addEventListener('keydown', onEscKeyPress);
 
-function selectMovieCards() {
-  const movieCards = document.querySelectorAll('.movie-card-template'); // NodeList
+// function selectMovieCards() {
+//   const movieCards = document.querySelectorAll('.movie-card-template'); // NodeList
 
-  if (movieCards.length) {
-    [...movieCards].forEach(movieCard => {
-      // Add event listener for click to each movie card element
-      movieCard.addEventListener('click', openModal);
-    });
-  } else {
-    // Element not found yet, try again after a delay
-    setTimeout(selectMovieCards, 1000);
-  }
-}
+//   if (movieCards.length) {
+//     [...movieCards].forEach(movieCard => {
+//       // Add event listener for click to each movie card element
+//       movieCard.addEventListener('click', openModal);
+//     });
+//   } else {
+//     // Element not found yet, try again after a delay
+//     setTimeout(selectMovieCards, 1000);
+//   }
+// }
 
-// Start the selection process
-selectMovieCards();
+// // Start the selection process
+// selectMovieCards();
 
 function onEscKeyPress(e) {
   const ESC_KEY_CODE = 'Escape';
@@ -74,7 +74,7 @@ function renderModal(data) {
         </div>
         <div class="modal-info-value">
             <p class="info-value">
-                <span class="info-value__vote">${data.vote_average.toFixed(1)}</span>&ensp;/&ensp; 
+                <span class="info-value__vote">${data.vote_average.toFixed(1)}</span>&ensp;/&ensp;
 
                 <span class="js-info-value__votes">${data.vote_count}</span>
             </p>
@@ -96,4 +96,3 @@ function renderModal(data) {
         </div>
     </div>`;
 }
-

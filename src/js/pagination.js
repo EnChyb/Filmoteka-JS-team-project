@@ -1,4 +1,5 @@
 import { searchPopular, genresList, popularOptions } from './database';
+import { openModal } from './modal';
 const photoCard = document.querySelector('.movie-gallery');
 const paginationContainer = document.querySelector('#pagination');
 const prevButton = document.querySelector('.prev');
@@ -15,10 +16,26 @@ console.log(popularOptionsCopy.params.page);
 
 // fetching informacji do kart
 
+function selectMovieCards() {
+  const movieCards = document.querySelectorAll('.movie-card-template'); // NodeList
+
+  if (movieCards.length) {
+    [...movieCards].forEach(movieCard => {
+      // Add event listener for click to each movie card element
+      movieCard.addEventListener('click', openModal);
+    });
+  } else {
+    // Element not found yet, try again after a delay
+    setTimeout(selectMovieCards, 1000);
+  }
+}
+
 async function fetchItems() {
   pageNum = currentPage;
   items = await searchPopular();
   // genres = await genresList();
+  // Start the selection process
+  selectMovieCards();
   console.log(items);
 }
 

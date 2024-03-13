@@ -49,6 +49,7 @@ function showPrev() {
   if (currentPage > 1) {
     currentPage--;
     showItems(currentPage);
+    updatePagination();
   }
 }
 
@@ -57,12 +58,22 @@ function showNext() {
   if (currentPage < totalPages) {
     currentPage++;
     showItems(currentPage);
+    updatePagination();
   }
 }
 
 function setupPagination() {
   prevButton.addEventListener('click', showPrev);
   nextButton.addEventListener('click', showNext);
+  updatePagination();
+}
+
+function updatePagination() {
+  const totalPages = Math.ceil(items.length / itemsPerPage);
+  const currentPageDisplay = document.createElement('span');
+  currentPageDisplay.textContent = `Page ${currentPage} of ${totalPages}`;
+  paginationContainer.innerHTML = '';
+  paginationContainer.appendChild(currentPageDisplay);
 }
 
 async function initialize() {

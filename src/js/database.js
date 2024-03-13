@@ -50,8 +50,10 @@ export async function searchPopular() {
     `https://api.themoviedb.org/3/movie/popular?api_key=a53cba9b0d8796262c7859f0f1e4d0eb`,
     popularOptions,
   );
+  
   const database = response.data.results;
   // console.log(database);
+  
   movieId = database.id;
   return database;
 }

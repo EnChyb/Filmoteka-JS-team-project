@@ -1,5 +1,6 @@
 import axios from 'axios';
 const photoCard = document.querySelector('.movie-gallery');
+const loader = document.querySelector('.loader');
 
 // gdyby był problem z autoryzacją wrzucić do *Options.headers
 // Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNTNjYmE5YjBkODc5NjI2MmM3ODU5ZjBmMWU0ZDBlYiIsInN1YiI6IjY1ZWExNzQ2NmEyMjI3MDE2Mzk1YTI0YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Fzc0o8w2TrTKhHRsCzNh2iOOm_E6YThcasNUoIPbAog',
@@ -13,6 +14,21 @@ let keywords = 'black%20panther'; // słowo/słowa klucz do wywołania z inputa
 let language = 'en-US'; // lista do wyrenderowania ze strony lub zrobimy własną, żeby okroić projekt
 let includeAdult = 'false'; //default 'false' boolean
 let pageNum = '1';
+
+fetchBreeds()
+  .then(breedsData => {
+    renderBreedsData(breedsData);
+    loader.classList.add('hidden');
+  })
+  .catch(error => {
+    Notiflix.Notify.failure(`Error: ${error}`);
+    handleFetchError();
+  });
+
+function handleFetchError() {
+  errorElement.classList.remove('hidden');
+  loader.classList.add('hidden');
+}
 
 const searchOptions = {
   params: {
@@ -31,6 +47,8 @@ async function searchMovie() {
     'https://api.themoviedb.org/3/search/movie?api_key=a53cba9b0d8796262c7859f0f1e4d0eb',
     searchOptions,
   );
+  loader.classList.remove('hidden');
+  errorElement.classList.add('hidden');
   const database = response.data.results;
   // console.log(database);
 }
@@ -56,6 +74,9 @@ export async function searchPopular() {
     `https://api.themoviedb.org/3/movie/popular?api_key=a53cba9b0d8796262c7859f0f1e4d0eb`,
     popularOptions,
   );
+  loader.classList.remove('hidden');
+  errorElement.classList.add('hidden');
+
   const database = response.data.results;
   console.log(database);
   const markup = database
@@ -81,6 +102,8 @@ export async function searchPopular() {
   photoCard.insertAdjacentHTML('beforeend', markup);
   movieId = database.id;
   console.log(movieId);
+
+  loader.classList.add('hidden');
 }
 
 //Wyszukiwarka detali filmu po movie_id
@@ -92,7 +115,6 @@ const detailsOptions = {
     accept: 'application/json',
   },
 };
-
 
 async function searchDetails() {
   const response = await axios.get(

@@ -66,7 +66,7 @@
   font-size: 30px;
 }
 
-.main-header-list-right {
+.library-header-list-right {
   display: flex;
   font-size: 12px;
   gap: 39px;
@@ -84,7 +84,7 @@
 
 /* underline */
 
-.main-header-list-right .link::after {
+.library-header-list-right .link::after {
   background-color: var(--color-red);
   bottom: -4px;
   content: '';
@@ -95,8 +95,10 @@
   width: 0;
 }
 
-.main-header-list-right .link:hover::after,
-.main-header-list-right .link:focus::after {
+
+.library-header-list-right .link:hover::after,
+.library-header-list-right .link:focus::after,
+.library-header-list-right .main-header-li:last-child .link::after {
   width: 100%;
 }
 

@@ -81,6 +81,5 @@
     grid-template-columns: repeat(3, 1fr);
     column-gap: 16px;
     row-gap: 32px;
-    padding: 64px 0;
   }
 }

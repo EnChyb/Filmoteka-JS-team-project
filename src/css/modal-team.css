@@ -1,0 +1,30 @@
+.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.modal-team-container {
+    overflow-y: scroll;
+    overflow: hidden;
+    /*height: 100%;
+    width: 100%;*/
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    background-color: #ffffff;
+    color: #000;
+    font-weight: 500;
+    margin-top: 20px;
+    margin-bottom: 38px;
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    transition: all 0.5s ease 0s;
+    z-index: 150;
+}
+
+.modal-team-content {
+    width: 311px;
+    height: 90vh;
+
+}

@@ -1,4 +1,5 @@
 import { searchPopular, genresList, popularOptions } from './database';
+import { openModal } from './modal';
 const photoCard = document.querySelector('.movie-gallery');
 const paginationContainers = document.querySelectorAll('.pagination-container');
 const prevButtons = document.querySelectorAll('.prev');
@@ -20,10 +21,26 @@ console.log(popularOptionsCopy.params.page);
 
 // fetching informacji do kart
 
+function selectMovieCards() {
+  const movieCards = document.querySelectorAll('.movie-card-template'); // NodeList
+
+  if (movieCards.length) {
+    [...movieCards].forEach(movieCard => {
+      // Add event listener for click to each movie card element
+      movieCard.addEventListener('click', openModal);
+    });
+  } else {
+    // Element not found yet, try again after a delay
+    setTimeout(selectMovieCards, 1000);
+  }
+}
+
 async function fetchItems() {
   pageNum = currentPage;
   items = await searchPopular();
   // genres = await genresList();
+  // Start the selection process
+  selectMovieCards();
   console.log(items);
 }
 
@@ -46,7 +63,7 @@ function showItems(page) {
         `
         <div class="movie-card-template" data-modal-open-window data-movie-id="${id}">
           <a class="movie-image">
-           <img src="https://image.tmdb.org/t/p/w500${poster_path}?api_key=a53cba9b0d8796262c7859f0f1e4d0eb"
+           <img class="movie-image-detail" src="https://image.tmdb.org/t/p/w500${poster_path}?api_key=a53cba9b0d8796262c7859f0f1e4d0eb"
             alt="film-poster" />
           </a>
           <div class="movie-info">

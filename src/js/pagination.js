@@ -4,7 +4,18 @@ const photoCard = document.querySelector('.movie-gallery');
 const prevButton = document.querySelector('.prev');
 const nextButton = document.querySelector('.next');
 
+<<<<<<< Updated upstream
 let currentPage = 1;
+=======
+let activeButton;
+const lastPage = 20;
+let currentPage = 1;
+let items;
+let popularOptionsCopy = { ...popularOptions }; // Create a copy of popularOptions
+// let genres;
+
+// console.log(popularOptionsCopy.params.page);
+>>>>>>> Stashed changes
 
 function paginate(items, itemsPerPage, paginationContainer) {
   // let currentPage = 1;
@@ -25,9 +36,21 @@ function paginate(items, itemsPerPage, paginationContainer) {
     });
   }
 
+<<<<<<< Updated upstream
   function setupPagination() {
     const pagination = document.querySelector(paginationContainer);
     pagination.innerHTML = '';
+=======
+async function fetchItems() {
+  // popularOptionsCopy.params.page = currentPage;
+  items = await searchPopular();
+  showItems();
+  // genres = await genresList();
+  // Start the selection process
+  selectMovieCards();
+  console.log(items);
+}
+>>>>>>> Stashed changes
 
     for (let i = 1; i <= totalPages; i++) {
       const link = document.createElement('a');
@@ -36,9 +59,14 @@ function paginate(items, itemsPerPage, paginationContainer) {
       link.href = '#';
       link.innerText = i;
 
+<<<<<<< Updated upstream
       if (i === currentPage) {
         link.classList.add('active');
       }
+=======
+function showItems() {
+  let pageItems = items;
+>>>>>>> Stashed changes
 
       link.addEventListener('click', event => {
         event.preventDefault();
@@ -50,6 +78,7 @@ function paginate(items, itemsPerPage, paginationContainer) {
         link.classList.add('active');
       });
 
+<<<<<<< Updated upstream
       pagination.appendChild(link);
     }
 
@@ -127,6 +156,103 @@ function paginate(items, itemsPerPage, paginationContainer) {
       setupPagination();
     });
   });
+=======
+  const markup = pageItems
+    .map(
+      ({ poster_path, title, vote_average, release_date, genre_ids, id }) =>
+        `
+        <div class="movie-card-template" data-modal-open-window data-movie-id="${id}">
+          <a class="movie-image">
+           <img class="movie-image-detail" src="https://image.tmdb.org/t/p/w500${poster_path}?api_key=a53cba9b0d8796262c7859f0f1e4d0eb"
+            alt="film-poster" />
+          </a>
+          <div class="movie-info">
+            <p class="movie-name">${title}</p>
+            <div class="tags-grade-wrap">
+              <p class="movie-tags-year">${genre_ids} | ${release_date.slice(0, 4)}</p>
+              <p class="movie-grade">${vote_average}</p>
+            </div>
+          </div>
+        </div>`,
+    )
+    .join('');
+  // console.log(genre_ids);
+  // podłączenie karty do strony
+  photoCard.insertAdjacentHTML('beforeend', markup);
+}
+
+// pokaż poprzednią stronę
+
+function showPrev() {
+  if (currentPage > 1) {
+    currentPage--;
+    fetchItems();
+    updatePagination();
+  } else {
+    return;
+  }
+}
+
+// pokaż następną stronę
+
+function showNext() {
+  // const totalPages = Math.ceil(items.length / itemsPerPage);
+  if (currentPage <= lastPage) {
+    currentPage++;
+    fetchItems();
+    updatePagination();
+  } else {
+    //notiflix sorki ale to ostatnia strona
+    return;
+  }
+}
+
+prevButton.addEventListener('click', showPrev);
+nextButton.addEventListener('click', showNext);
+
+function updatePagination() {
+  paginationContainer.innerHTML = '';
+  if (currentPage >= 1 || currentPage <= 3) {
+    for (let i = 1; i <= 5; i++) {
+      const pageButton = document.createElement('button');
+      pageButton.textContent = i;
+      pageButton.classList.add('page-btn');
+      if (i === currentPage) {
+        pageButton.classList.add('active');
+      }
+      pageButton.addEventListener('click', () => {
+        popularOptionsCopy.params.page = i;
+        console.log(currentPage);
+        fetchItems();
+      });
+      paginationContainer.appendChild(pageButton);
+    }
+    activeButton = document.querySelector('.active');
+    currentPage = activeButton.innerHTML;
+    console.log(currentPage);
+  }
+
+  if (currentPage >= 4) {
+    for (let i = 1; i <= 5; i++) {
+      const pageButton = document.createElement('button');
+      pageButton.textContent = i;
+      pageButton.classList.add('page-btn');
+      if (i === currentPage) {
+        pageButton.classList.add('active');
+      }
+      pageButton.addEventListener('click', () => {
+        currentPage = i;
+        popularOptionsCopy.params.page = currentPage;
+      });
+      paginationContainer.appendChild(pageButton);
+    }
+  }
+}
+
+async function initialize() {
+  await fetchItems();
+  updatePagination();
+>>>>>>> Stashed changes
 }
 
 // Fetch movie data and paginate

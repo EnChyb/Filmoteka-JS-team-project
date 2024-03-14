@@ -53,16 +53,10 @@ async function searchMovie() {
   // console.log(database);
 }
 
-try {
-  searchDetails();
-} catch (error) {
-  console.log(error);
-}
-
 //Wyszukiwarka popularnych na główną
 //ze zmiennych tylko to ID i język
 //------------------------------------------------------//
-const popularOptions = {
+export const popularOptions = {
   params: { language: language, page: pageNum },
   headers: {
     accept: 'application/json',
@@ -74,36 +68,20 @@ export async function searchPopular() {
     `https://api.themoviedb.org/3/movie/popular?api_key=a53cba9b0d8796262c7859f0f1e4d0eb`,
     popularOptions,
   );
+
   loader.classList.remove('hidden');
   errorElement.classList.add('hidden');
 
   const database = response.data.results;
-  console.log(database);
-  const markup = database
-    .map(
-      ({ poster_path, title, vote_average, vote_count, release_date, genre_ids, id }) => `
-    <div class="movie-card-template" data-modal-open-window data-movie-id="${id}">
-      <a class="movie-image">
-        <img src="https://image.tmdb.org/t/p/w500${poster_path}?api_key=a53cba9b0d8796262c7859f0f1e4d0eb" 
-        alt="film-poster" />
-      </a>
-      <div class="movie-info">
-        <p class="movie-name">${title}</p>
-        <div class="tags-grade-wrap">
-          <p class="movie-tags-year">${genre_ids} | ${release_date}</p>
-          <p class="movie-grade">Grade: ${vote_average}</p>
-          <p class="movie-grade">Votes: ${vote_count}</p>
-          </div>
-    </div>
-    </div>
-  `,
-    )
-    .join('');
-  photoCard.insertAdjacentHTML('beforeend', markup);
+  // console.log(database);
+  
   movieId = database.id;
   console.log(movieId);
 
   loader.classList.add('hidden');
+
+  return database;
+
 }
 
 //Wyszukiwarka detali filmu po movie_id
@@ -122,7 +100,7 @@ async function searchDetails() {
     detailsOptions,
   );
   const database = response.data;
-  console.log(database);
+  // console.log(database);
 }
 
 //fetch listy gatunków z id
@@ -134,13 +112,14 @@ const genresOptions = {
   },
 };
 
-async function genresList() {
+export async function genresList() {
   const response = await axios.get(
     `https://api.themoviedb.org/3/genre/movie/list?api_key=a53cba9b0d8796262c7859f0f1e4d0eb`,
     genresOptions,
   );
-  const database = response.data;
-  console.log(database);
+  const genresArray = response.data.genres;
+  // console.log(genresArray);
+  return genresArray;
 }
 
 //fetch listy języków dostępnych
@@ -152,4 +131,10 @@ async function languageList() {
   );
   const database = response.data;
   console.log(database);
+}
+
+try {
+  genresList();
+} catch (error) {
+  console.log(error);
 }

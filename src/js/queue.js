@@ -11,8 +11,8 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
 const galleryOfMovies = document.querySelector('.movie-gallery');
-const addToQueueButton = document.querySelector('.add-watched');
-const queueButton = document.querySelector('.watched');
+const addToQueueButton = document.querySelector('.add-queue');
+const queueButton = document.querySelector('.queue');
 
 addToQueueButton.addEventListener('click', data => {
   db.collection('movies').set({
@@ -43,5 +43,5 @@ queueButton.addEventListener('click', () => {
     </div>`;
     })
     .join('');
-  galleryOfMovies.insertAdjacentHTML('beforeend', markup);
+  cardOfMovie.insertAdjacentHTML('afterstart', markup);
 });

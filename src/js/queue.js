@@ -1,3 +1,4 @@
+// inicjalizacja biblioteki firebase
 const firebaseConfig = {
   apiKey: 'AIzaSyDDpwcjcKhe_urNJExT9mupeVvY7ZU4amc',
   authDomain: 'filmoteka-99859.firebaseapp.com',
@@ -14,6 +15,7 @@ const galleryOfMovies = document.querySelector('.movie-gallery');
 const addToQueueButton = document.querySelector('.add-queue');
 const queueButton = document.querySelector('.queue');
 
+// przy kliknięciu add to queue informacje o zdjęciu zapisują się w kolekcji movies
 addToQueueButton.addEventListener('click', data => {
   db.collection('movies').set({
     image: data.poster_path,
@@ -25,6 +27,7 @@ addToQueueButton.addEventListener('click', data => {
   });
 });
 
+// przy kilknięciu w sekcję queue dodaje się do HTML kod który. zawiera dane z kolekcji movies
 queueButton.addEventListener('click', () => {
   const markup = db
     .collection('movies')

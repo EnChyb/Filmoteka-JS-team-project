@@ -1,9 +1,14 @@
 import { searchPopular, genresList, popularOptions } from './database';
 import { openModal } from './modal';
 const photoCard = document.querySelector('.movie-gallery');
-const paginationContainer = document.querySelector('#pagination');
-const prevButton = document.querySelector('.prev');
-const nextButton = document.querySelector('.next');
+const paginationContainers = document.querySelectorAll('.pagination-container');
+const prevButtons = document.querySelectorAll('.prev');
+const nextButtons = document.querySelectorAll('.next');
+
+const paginationContainersArr = Array.from(paginationContainers);
+console.log(paginationContainersArr);
+const nextButtonsArr = Array.from(nextButtons);
+const prevButtonsArr = Array.from(prevButtons);
 
 let activeButton;
 let currentPage = 1;
@@ -105,15 +110,22 @@ function updatePage() {
 }
 
 function setupPagination() {
-  prevButton.addEventListener('click', showPrev);
-  nextButton.addEventListener('click', showNext);
+  prevButtonsArr.forEach(prevButton => {
+    prevButton.addEventListener('click', showPrev);
+  });
+  nextButtonsArr.forEach(nextButton => {
+    nextButton.addEventListener('click', showNext);
+  });
   updatePagination();
 }
 
 function updatePagination() {
   // const totalPages = Math.ceil(items.length / itemsPerPage);
   const totalPages = 5;
-  paginationContainer.innerHTML = '';
+  paginationContainersArr.forEach(paginationContainer => {
+    paginationContainer.innerHTML = '';
+  });
+  // paginationContainer.innerHTML = '';
 
   for (let i = 1; i <= totalPages; i++) {
     const pageButton = document.createElement('button');
@@ -128,7 +140,10 @@ function updatePagination() {
       // updatePagination();
       updatePage();
     });
-    paginationContainer.appendChild(pageButton);
+    // paginationContainer.appendChild(pageButton);
+    paginationContainersArr.forEach(paginationContainer => {
+      paginationContainer.appendChild(pageButton);
+    });
   }
   // console.log(popularOptions.params.page);
   activeButton = document.querySelector('.active');

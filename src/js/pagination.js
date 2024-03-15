@@ -5,26 +5,27 @@ const prevButtons = document.querySelectorAll('.prev');
 const nextButtons = document.querySelectorAll('.next');
 
 const paginationContainersArr = Array.from(paginationContainers);
-console.log(paginationContainersArr);
 const nextButtonsArr = Array.from(nextButtons);
 const prevButtonsArr = Array.from(prevButtons);
 
+let totalPages = 10;
 let activeButton;
 let currentPage = 1;
 // let itemsPerPage = 20;
 let items;
 let popularOptionsCopy = { ...popularOptions }; // Create a copy of popularOptions
 // let genres;
-let pageNum = popularOptionsCopy.params.page;
-console.log(popularOptionsCopy.params.page);
 
 // fetching informacji do kart
 
 async function fetchItems() {
-  pageNum = currentPage;
-  items = await searchPopular();
+  try {
+    items = await searchPopular();
+  } catch (error) {
+    console.log(`Fetching error: ${error}`);
+  }
+
   // genres = await genresList();
-  console.log(items);
 }
 
 // wyświetl karty
@@ -78,37 +79,47 @@ function showPrev() {
 
 function showNext() {
   // const totalPages = Math.ceil(items.length / itemsPerPage);
-  const totalPages = 5;
-  if (currentPage < totalPages) {
+  // const totalPages = 5;
+  if (currentPage <= totalPages) {
     currentPage++;
     showItems(currentPage);
     updatePagination();
+  } else {
+    // notiflix sory to ostatnia strona
+    return;
   }
 }
 
 function updatePage() {
   popularOptionsCopy.params.page = currentPage; // Update page in popularOptionsCopy
+  console.log(popularOptionsCopy);
   showItems(currentPage);
   updatePagination();
 }
 
-function setupPagination() {
-  prevButtonsArr.forEach(prevButton => {
-    prevButton.addEventListener('click', showPrev);
-  });
-  nextButtonsArr.forEach(nextButton => {
-    nextButton.addEventListener('click', showNext);
-  });
-  updatePagination();
-}
+// function setupPagination() {
+//   prevButtonsArr.forEach(prevButton => {
+//     prevButton.addEventListener('click', showPrev);
+//   });
+//   nextButtonsArr.forEach(nextButton => {
+//     nextButton.addEventListener('click', showNext);
+//   });
+//   updatePagination();
+// }
+
+prevButtonsArr.forEach(prevButton => {
+  prevButton.addEventListener('click', showPrev);
+});
+nextButtonsArr.forEach(nextButton => {
+  nextButton.addEventListener('click', showNext);
+});
 
 function updatePagination() {
   // const totalPages = Math.ceil(items.length / itemsPerPage);
-  const totalPages = 5;
+  totalPages = currentPage + 4;
   paginationContainersArr.forEach(paginationContainer => {
     paginationContainer.innerHTML = '';
   });
-  // paginationContainer.innerHTML = '';
 
   for (let i = 1; i <= totalPages; i++) {
     const pageButton = document.createElement('button');
@@ -123,14 +134,11 @@ function updatePagination() {
       // updatePagination();
       updatePage();
     });
-    // paginationContainer.appendChild(pageButton);
     paginationContainersArr.forEach(paginationContainer => {
       paginationContainer.appendChild(pageButton);
     });
   }
-  // console.log(popularOptions.params.page);
   activeButton = document.querySelector('.active');
-  // console.log(activeButton);
   currentPage = activeButton.innerHTML;
   console.log(currentPage);
 
@@ -140,7 +148,7 @@ function updatePagination() {
 async function initialize() {
   await fetchItems();
   await showItems(currentPage);
-  setupPagination();
+  updatePagination();
 }
 
 initialize();

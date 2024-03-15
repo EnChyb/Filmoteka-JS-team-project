@@ -109,6 +109,7 @@ function showNext() {
     fetchItems();
     updatePagination();
   } else {
+    console.log('Sorry, there are no more pages');
     //notiflix --> Sorki ale nie ma wiecej stron----------------------------------------------------------------
     return;
   }

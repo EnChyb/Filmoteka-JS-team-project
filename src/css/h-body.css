@@ -45,7 +45,7 @@
   background-color: #f7f7f7;
 }
 
-.page-btn.active {
+.buttons-pages .page-btn.active {
   background-color: #ff6b08;
   color: #fff;
 }
@@ -53,6 +53,28 @@
 .page-btn.prev,
 .page-btn.next {
   background-color: #f7f7f7;
+  position: relative;
+}
+
+.page-btn.prev:hover,
+.page-btn.prev:focus,
+.page-btn.prev:active,
+.page-btn.next:hover,
+.page-btn.next:focus,
+.page-btn.next:active {
+  background-color: #ff6b08;
+}
+
+.page-btn.prev svg {
+  left: 7px;
+  position: absolute;
+  width: 32px;
+}
+
+.page-btn.next svg {
+  right: 7px;
+  position: absolute;
+  width: 32px;
 }
 
 .hidden {

@@ -76,10 +76,7 @@ export async function searchPopular() {
   // console.log(database);
 
   movieId = database.id;
-  console.log(movieId);
-
   // loader.classList.add('hidden');
-
   return database;
 }
 
@@ -116,9 +113,12 @@ export async function genresList() {
     `https://api.themoviedb.org/3/genre/movie/list?api_key=a53cba9b0d8796262c7859f0f1e4d0eb`,
     genresOptions,
   );
-  const genresArray = response.data.genres;
-  // console.log(genresArray);
-  return genresArray;
+  const genresArrObj = response.data.genres;
+  // const genresArray = [];
+  // for (const genre in genresArrObj) {
+
+  // }
+  return genresArrObj;
 }
 
 //fetch listy języków dostępnych

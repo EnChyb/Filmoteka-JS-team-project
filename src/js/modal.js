@@ -19,22 +19,21 @@ overlay.addEventListener('click', closeModal);
 closeModalBtn.addEventListener('click', closeModal);
 window.addEventListener('keydown', onEscKeyPress);
 
-function selectMovieCards() {
-  const movieCards = document.querySelectorAll('.movie-card-template'); // NodeList
+const movieGallery = document.querySelector('.movie-gallery'); // this element will be observed for changes
+const observeOptions = { attributes: true, childList: true, subtree: true };
 
-  if (movieCards.length) {
-    [...movieCards].forEach(movieCard => {
-      // Add event listener for click to each movie card element
-      movieCard.addEventListener('click', openModal);
-    });
-  } else {
-    // Element not found yet, try again after a delay
-    setTimeout(selectMovieCards, 1000);
-  }
-}
+// callback to be called whenever the observer notices any change in movieGallery node
+const getMovieCards = () => {
+  const movieCards = document.querySelectorAll('.movie-card-template');
+  movieCards.forEach(movieCard => {
+    console.log(movieCard);
+    movieCard.addEventListener('click', openModal);
+  });
+  observer.disconnect(); // stop observing because fetch is already complete
+};
 
-// Start the selection process
-selectMovieCards();
+const observer = new MutationObserver(getMovieCards);
+observer.observe(movieGallery, observeOptions);
 
 function onEscKeyPress(e) {
   const ESC_KEY_CODE = 'Escape';

@@ -47,38 +47,45 @@ function showItems() {
   const itemsContainer = document.querySelector('#movie-items');
   itemsContainer.innerHTML = '';
 
+  //udało mi się zrobić to ale nie wiem jak to wrzucić do karty PS.istnieje szansa, że jest to błędne rozumowanie bo jest to zrobione poza makrupem
   const markGenres = pageItems.map(({ genre_ids }) => {
-    console.log(genre_ids);
+    // console.log(genre_ids);
+    const arr = [];
     for (const genre of genres) {
-      // console.log(genre.name);
       if (genre_ids.includes(genre.id)) {
-        console.log(genre.name);
+        // console.log(genre.name);
+        arr.push(genre.name);
       }
     }
+    console.log(arr.slice(0, 3));
+    return arr.slice(0, 3);
   });
+
   // wnętrze karty
 
   const markup = pageItems
     .map(
-      ({ poster_path, title, vote_average, release_date, id }) =>
+      ({ poster_path, title, vote_average, release_date, genre_ids, id }) =>
         `
-        <div class="movie-card-template" data-modal-open-window data-movie-id="${id}">
-          <a class="movie-image">
-           <img class="movie-image-detail" src="https://image.tmdb.org/t/p/w500${poster_path}?api_key=a53cba9b0d8796262c7859f0f1e4d0eb"
-            alt="film-poster" />
-          </a>
-          <div class="movie-info">
-            <p class="movie-name">${title}</p>
-            <div class="tags-grade-wrap">
-              <p class="movie-tags-year">${markGenres} | ${release_date.slice(0, 4)}</p>
-              <p class="movie-grade">${vote_average}</p>
-            </div>
-          </div>
-        </div>`,
+    <div class="movie-card-template" data-modal-open-window data-movie-id="${id}">
+    <a class="movie-image">
+    <img class="movie-image-detail" src="https://image.tmdb.org/t/p/w500${poster_path}?api_key=a53cba9b0d8796262c7859f0f1e4d0eb"
+    alt="film-poster" />
+    </a>
+    <div class="movie-info">
+    <p class="movie-name">${title}</p>
+    <div class="tags-grade-wrap">
+    <p class="movie-tags-year">${markGenres} | ${release_date.slice(0, 4)}</p>
+    <p class="movie-grade">${vote_average}</p>
+    </div>
+    </div>
+    </div>`,
     )
     .join('');
+
   // console.log(genre_ids);
   // podłączenie karty do strony
+
   photoCard.insertAdjacentHTML('beforeend', markup);
 }
 

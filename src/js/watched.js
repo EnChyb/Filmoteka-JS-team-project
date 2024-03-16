@@ -1,3 +1,4 @@
+// inicjalizacja biblioteki firebase
 const firebaseConfig = {
   apiKey: 'AIzaSyDDpwcjcKhe_urNJExT9mupeVvY7ZU4amc',
   authDomain: 'filmoteka-99859.firebaseapp.com',
@@ -10,10 +11,8 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-const galleryOfMovies = document.querySelector('.movie-gallery');
 const cardOfMovie = document.querySelector('.movie-card');
 const addToWatchedButton = document.querySelector('.add-watched');
-const modal = document.querySelector('.modal-filmoteka');
 const watchedButton = document.querySelector('.watched');
 
 // ma za zadanie dodanie danych do firebase

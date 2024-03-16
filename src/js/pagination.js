@@ -1,3 +1,4 @@
+import Notiflix from 'notiflix';
 import { searchPopular, genresList, popularOptions } from './database';
 import { openModal } from './modal';
 const photoCard = document.querySelector('.movie-gallery');
@@ -103,8 +104,9 @@ function showNext() {
     fetchItems();
     updatePagination();
   } else {
-    console.log('Sorry, there are no more pages');
+    // console.log('Sorry, there are no more pages');
     //notiflix --> Sorki ale nie ma wiecej stron----------------------------------------------------------------
+    Notiflix.Notify.failure('Sorry, there are no more pages');
     return;
   }
 }

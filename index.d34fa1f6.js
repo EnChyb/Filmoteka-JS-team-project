@@ -8,8 +8,8 @@ let t,e,r,n,i;var o,s,a,u,f=globalThis;function l(t,e,r,n){Object.defineProperty
     <p class="movie-name">${r}</p>
     <div class="tags-grade-wrap">
     <p class="movie-tags-year">${u.slice(0,3).join(", ")} | ${i.slice(0,4)}</p>
-    <p class="movie-grade">${Math.ceil(100*n)/100}</p>
+    <p class="movie-grade">${n.toFixed(1)}</p>
     </div>
     </div>
     </div>`}).join("");eQ.insertAdjacentHTML("beforeend",r)}(),function t(){let e=document.querySelectorAll(".movie-card-template");e.length?[...e].forEach(t=>{t.addEventListener("click",eX)}):setTimeout(t,1e3)}()}function e8(){if(e1.innerHTML="",e2>=1&&e2<=3)for(let t=1;t<=5;t++){let e=document.createElement("button");e.textContent=t,e.classList.add("page-btn"),t===e2&&e.classList.add("active"),e.addEventListener("click",()=>{e2=t,e6.params.page=e2,e5(),e8()}),e1.appendChild(e)}if(e2>=4){let t=document.createElement("button");if(t.textContent=1,t.classList.add("page-btn"),e1.appendChild(t),t.addEventListener("click",()=>{e2=1,e6.params.page=e2,e5(),e8()}),e2>=5){let t=document.createElement("button");t.textContent="...",t.classList.add("page-btn"),e1.appendChild(t)}for(let t=1;t<=5;t++){let e=document.createElement("button");e.textContent=t-3+e2,e.classList.add("page-btn"),3===t&&e.classList.add("active"),e.addEventListener("click",()=>{e2=t+e2-3,e6.params.page=e2,e5(),e8()}),e1.appendChild(e)}}}eZ.addEventListener("click",function(){e2>1&&(e2--,e5(),e8())}),e0.addEventListener("click",function(){if(e2<=50)e2++,e5(),e8();else{console.log("Sorry, there are no more pages");return}}),async function(){await e5(),e8()}();const e4=document.querySelector("#modal-team-open"),e3=document.querySelector("[data-modal-team-close]"),e7=document.querySelector("#modal-team");function e9(){e7.classList.toggle("is-hidden")}e4.addEventListener("click",e9),e3.addEventListener("click",e9),document.addEventListener("keydown",t=>{"Escape"===t.key&&e7.classList.add("is-hidden")}),document.addEventListener("click",t=>{t.target===e7&&e7.classList.add("is-hidden")});
-//# sourceMappingURL=index.b10ded4d.js.map
+//# sourceMappingURL=index.d34fa1f6.js.map

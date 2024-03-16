@@ -26,7 +26,6 @@ li {
 
 .modal-window {
   overflow-y: scroll;
-  overflow: hidden;
   max-height: 100%;
   width: 280px;
   position: fixed;
@@ -185,6 +184,14 @@ transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1),
   list-style: none;
 }
 
+.info-value__vote {
+  color: #fff;
+  background-color: #ff6b01;
+  border-radius: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
 /* TABLET */
 
 @media screen and (min-width: 768px) {
@@ -217,8 +224,6 @@ transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1),
 
   .modal-about-text {
     width: 264px;
-    height: 236px;
-    font-weight: 500;
   }
 
   .modal-movie-btn {
@@ -247,7 +252,6 @@ transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1),
   .modal-poster {
     height: 478px;
     width: 375px;
-    /* background-image: url(); */
     margin-right: 16px;
   }
 
@@ -259,7 +263,6 @@ transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1),
   .modal-about-text {
     width: 391px;
     padding-right: 12px;
-    font-weight: 500;
   }
 
   .modal-movie-btn {

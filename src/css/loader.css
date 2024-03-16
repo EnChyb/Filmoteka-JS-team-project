@@ -3,12 +3,11 @@
 }
 
 .loader-container {
-  position: absolute;
-  top:30%;
-  left: 50%;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
 }
-/* HTML: <div class="loader"></div> */
-/* HTML: <div class="loader"></div> */
+
 .loader {
   width: 80px;
   height: 80px;

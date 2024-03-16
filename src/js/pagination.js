@@ -72,7 +72,7 @@ function showItems() {
         0,
         4,
       )}</p>
-    <p class="movie-grade">${Math.ceil(vote_average * 100) / 100}</p>
+    <p class="movie-grade">${vote_average.toFixed(1)}</p>
     </div>
     </div>
     </div>`;

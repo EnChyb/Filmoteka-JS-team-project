@@ -26,8 +26,8 @@
     "util": "^0.12.5"
   },
   "dependencies": {
-    "axios": "^1.6.7",
-    "firebase": "^10.8.1",
+    "axios": "^1.6.8",
+    "firebase": "^10.9.0",
     "notiflix": "^3.2.7"
   }
 }

@@ -83,20 +83,19 @@ export async function searchPopular() {
 //Wyszukiwarka detali filmu po movie_id
 //ze zmiennych tylko to ID i język
 //------------------------------------------------------//
-const detailsOptions = {
+export const detailsOptions = {
   params: { language: 'en-US' },
   headers: {
     accept: 'application/json',
   },
 };
 
-async function searchDetails() {
+export async function searchDetails(movieId) {
   const response = await axios.get(
-    `https://api.themoviedb.org/3/movie/550?api_key=a53cba9b0d8796262c7859f0f1e4d0eb`,
+    `https://api.themoviedb.org/3/movie/${movieId}?api_key=a53cba9b0d8796262c7859f0f1e4d0eb`,
     detailsOptions,
   );
-  const database = response.data;
-  // console.log(database);
+  return response.data;
 }
 
 //fetch listy gatunków z id

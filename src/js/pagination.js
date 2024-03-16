@@ -60,7 +60,8 @@ function showItems() {
         return genreArray;
       });
       return `
-    <div class="movie-card-template" data-modal-open-window data-movie-id="${id}">
+    <div class="movie-card-template" data-modal-open-window>
+    <h2 id="movie-id" class="is-hidden">${id}</h2>
     <a class="movie-image">
     <img class="movie-image-detail" src="https://image.tmdb.org/t/p/w500${poster_path}?api_key=a53cba9b0d8796262c7859f0f1e4d0eb"
     alt="film-poster" />

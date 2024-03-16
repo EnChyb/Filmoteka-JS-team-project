@@ -1,18 +1,16 @@
 import { searchPopular, genresList, popularOptions } from './database';
 import { openModal } from './modal';
 const photoCard = document.querySelector('.movie-gallery');
-const paginationContainer = document.querySelector('#pagination');
-const prevButton = document.querySelector('.prev');
-const nextButton = document.querySelector('.next');
+const prevButton = document.querySelector('.page-btn.prev');
+const nextButton = document.querySelector('.page-btn.next');
+const paginationContainer = document.querySelector('.pagination-container');
 
-let activeButton;
+const lastPage = 50;
+// let activeButton;
 let currentPage = 1;
-// let itemsPerPage = 20;
 let items;
 let popularOptionsCopy = { ...popularOptions }; // Create a copy of popularOptions
-// let genres;
-let pageNum = popularOptionsCopy.params.page;
-console.log(popularOptionsCopy.params.page);
+let genres;
 
 // fetching informacji do kart
 
@@ -31,48 +29,57 @@ function selectMovieCards() {
 }
 
 async function fetchItems() {
-  pageNum = currentPage;
+  popularOptionsCopy.params.page = currentPage;
   items = await searchPopular();
+  genres = await genresList();
+  // console.log(genres);
+  showItems();
   // genres = await genresList();
   // Start the selection process
   selectMovieCards();
-  console.log(items);
+  // console.log(items);
 }
 
 // wyświetl karty
 
-function showItems(page) {
-  // const startIndex = (page - 1) * itemsPerPage;
-  // const endIndex = startIndex + itemsPerPage;
-  // const pageItems = items.slice(startIndex, endIndex);
+function showItems() {
   let pageItems = items;
-
   const itemsContainer = document.querySelector('#movie-items');
   itemsContainer.innerHTML = '';
 
-  // wnętrze karty
-
   const markup = pageItems
-    .map(
-      ({ poster_path, title, vote_average, release_date, genre_ids, id }) =>
-        `
-        <div class="movie-card-template" data-modal-open-window data-movie-id="${id}">
-          <a class="movie-image">
-           <img src="https://image.tmdb.org/t/p/w500${poster_path}?api_key=a53cba9b0d8796262c7859f0f1e4d0eb"
-            alt="film-poster" />
-          </a>
-          <div class="movie-info">
-            <p class="movie-name">${title}</p>
-            <div class="tags-grade-wrap">
-              <p class="movie-tags-year">${genre_ids} | ${release_date.slice(0, 4)}</p>
-              <p class="movie-grade">${vote_average}</p>
-            </div>
-          </div>
-        </div>`,
-    )
+    .map(({ poster_path, title, vote_average, release_date, genre_ids, id }) => {
+      const allGenresNames = {};
+      const genreArray = [];
+      genres.map(genre => {
+        allGenresNames[genre.id] = genre.name;
+
+        if (genre_ids.includes(genre.id)) {
+          genreArray.push(genre.name);
+        }
+        return genreArray;
+      });
+      return `
+    <div class="movie-card-template" data-modal-open-window>
+    <h2 id="movie-id" class="is-hidden">${id}</h2>
+    <a class="movie-image">
+    <img class="movie-image-detail" src="https://image.tmdb.org/t/p/w500${poster_path}?api_key=a53cba9b0d8796262c7859f0f1e4d0eb"
+    alt="film-poster" />
+    </a>
+    <div class="movie-info">
+    <p class="movie-name">${title}</p>
+    <div class="tags-grade-wrap">
+    <p class="movie-tags-year">${genreArray.slice(0, 3).join(', ')} | ${release_date.slice(
+        0,
+        4,
+      )}</p>
+    <p class="movie-grade">${vote_average.toFixed(1)}</p>
+    </div>
+    </div>
+    </div>`;
+    })
     .join('');
-  // console.log(genre_ids);
-  // podłączenie karty do strony
+
   photoCard.insertAdjacentHTML('beforeend', markup);
 }
 
@@ -81,68 +88,90 @@ function showItems(page) {
 function showPrev() {
   if (currentPage > 1) {
     currentPage--;
-    showItems(currentPage);
+    fetchItems();
     updatePagination();
+  } else {
+    return;
   }
 }
 
 // pokaż następną stronę
 
 function showNext() {
-  // const totalPages = Math.ceil(items.length / itemsPerPage);
-  const totalPages = 5;
-  if (currentPage < totalPages) {
+  if (currentPage <= lastPage) {
     currentPage++;
-    showItems(currentPage);
+    fetchItems();
     updatePagination();
+  } else {
+    console.log('Sorry, there are no more pages');
+    //notiflix --> Sorki ale nie ma wiecej stron----------------------------------------------------------------
+    return;
   }
 }
 
-function updatePage() {
-  popularOptionsCopy.params.page = currentPage; // Update page in popularOptionsCopy
-  showItems(currentPage);
-  updatePagination();
-}
-
-function setupPagination() {
-  prevButton.addEventListener('click', showPrev);
-  nextButton.addEventListener('click', showNext);
-  updatePagination();
-}
+prevButton.addEventListener('click', showPrev);
+nextButton.addEventListener('click', showNext);
 
 function updatePagination() {
-  // const totalPages = Math.ceil(items.length / itemsPerPage);
-  const totalPages = 5;
   paginationContainer.innerHTML = '';
 
-  for (let i = 1; i <= totalPages; i++) {
-    const pageButton = document.createElement('button');
-    pageButton.textContent = i;
-    pageButton.classList.add('page-btn');
-    if (i === currentPage) {
-      pageButton.classList.add('active');
+  if (currentPage >= 1 && currentPage <= 3) {
+    for (let i = 1; i <= 5; i++) {
+      const pageButton = document.createElement('button');
+      pageButton.textContent = i;
+      pageButton.classList.add('page-btn');
+      if (i === currentPage) {
+        pageButton.classList.add('active');
+      }
+      pageButton.addEventListener('click', () => {
+        currentPage = i;
+        popularOptionsCopy.params.page = currentPage;
+        fetchItems();
+        updatePagination();
+      });
+      paginationContainer.appendChild(pageButton);
     }
-    pageButton.addEventListener('click', () => {
-      currentPage = i;
-      // showItems(currentPage);
-      // updatePagination();
-      updatePage();
-    });
-    paginationContainer.appendChild(pageButton);
   }
-  // console.log(popularOptions.params.page);
-  activeButton = document.querySelector('.active');
-  // console.log(activeButton);
-  currentPage = activeButton.innerHTML;
-  console.log(currentPage);
 
-  fetchItems();
+  if (currentPage >= 4) {
+    const pageButton = document.createElement('button');
+    pageButton.textContent = 1;
+    pageButton.classList.add('page-btn');
+    paginationContainer.appendChild(pageButton);
+    pageButton.addEventListener('click', () => {
+      currentPage = 1;
+      popularOptionsCopy.params.page = currentPage;
+      fetchItems();
+      updatePagination();
+    });
+
+    if (currentPage >= 5) {
+      const pageButton = document.createElement('button');
+      pageButton.textContent = '...';
+      pageButton.classList.add('page-btn');
+      paginationContainer.appendChild(pageButton);
+    }
+    for (let i = 1; i <= 5; i++) {
+      const pageButton = document.createElement('button');
+      pageButton.textContent = i - 3 + currentPage;
+      pageButton.classList.add('page-btn');
+      if (i === 3) {
+        pageButton.classList.add('active');
+      }
+      pageButton.addEventListener('click', () => {
+        currentPage = i + currentPage - 3;
+        popularOptionsCopy.params.page = currentPage;
+        fetchItems();
+        updatePagination();
+      });
+      paginationContainer.appendChild(pageButton);
+    }
+  }
 }
 
 async function initialize() {
   await fetchItems();
-  await showItems(currentPage);
-  setupPagination();
+  updatePagination();
 }
 
 initialize();

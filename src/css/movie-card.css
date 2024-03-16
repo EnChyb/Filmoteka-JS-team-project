@@ -18,16 +18,17 @@
 }
 
 .movie-image {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   object-fit: contain;
   height: 400px;
   width: 280px;
-  border-radius: 5px;
   border: none;
   overflow: hidden;
 }
+
+.movie-image-detail {
+  border-radius: 5px;
+}
+
 @media screen and (min-width: 768px) {
   .movie-image {
     height: 455px;

@@ -52,8 +52,8 @@
 .page-btn:hover,
 .page-btn:focus,
 .page-btn:active {
-  background-color: #ff6b08;
-  color: white;
+  background-color: #f7f7f7;
+  color: black;
 }
 
 .page-btn.prev,

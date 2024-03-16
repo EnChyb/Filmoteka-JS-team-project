@@ -5,6 +5,25 @@ const prevButton = document.querySelector('.page-btn.prev');
 const nextButton = document.querySelector('.page-btn.next');
 const paginationContainer = document.querySelector('.pagination-container');
 
+// paździerzowo wykonany loader 
+const loader = document.querySelector('.loader');
+
+function loaderRemove() {
+  loader.classList.add("hidden");
+  photoCard.classList.remove("hidden");
+  paginationContainer.classList.remove("hidden");
+  prevButton.classList.remove("hidden");
+  nextButton.classList.remove("hidden");
+}
+function loaderAdd() {
+  loader.classList.remove("hidden");
+  photoCard.classList.add("hidden");
+  paginationContainer.classList.add("hidden");
+  prevButton.classList.add("hidden");
+  nextButton.classList.add("hidden");
+}
+
+
 const lastPage = 50;
 // let activeButton;
 let currentPage = 1;
@@ -30,14 +49,17 @@ function selectMovieCards() {
 
 async function fetchItems() {
   popularOptionsCopy.params.page = currentPage;
+
   items = await searchPopular();
   genres = await genresList();
   // console.log(genres);
+  loaderAdd();
   showItems();
   // genres = await genresList();
   // Start the selection process
   selectMovieCards();
   // console.log(items);
+
 }
 
 // wyświetl karty
@@ -81,6 +103,8 @@ function showItems() {
     .join('');
 
   photoCard.insertAdjacentHTML('beforeend', markup);
+
+  setTimeout(loaderRemove, 1000);
 }
 
 // pokaż poprzednią stronę
@@ -172,6 +196,7 @@ function updatePagination() {
 async function initialize() {
   await fetchItems();
   updatePagination();
+
 }
 
 initialize();

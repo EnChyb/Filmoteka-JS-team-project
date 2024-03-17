@@ -28,6 +28,7 @@ addToWatchedButton.addEventListener('click', data => {
     year: dataJSON.release_date,
     grade: dataJSON.vote_average,
   });
+  console.log(dataJSON.id);
 });
 
 // ma za zadanie wyświetlenie filmów

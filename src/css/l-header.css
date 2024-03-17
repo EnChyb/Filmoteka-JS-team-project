@@ -10,18 +10,29 @@
   text-decoration: none;
 }
 
-.library-header-container {
+.library-header {
+  /* background-color: rgb(15, 23, 29); */
   background-color: var(--color-dark);
   background-image: url('../images/library-background-mobile.png');
   background-image: url('../images/library-background-mobile.png'),
     linear-gradient(var(--color-transparent), var(--color-transparent));
   background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.library-header-container {
+  /* background-color: var(--color-dark);
+  background-image: url('../images/library-background-mobile.png');
+  background-image: url('../images/library-background-mobile.png'),
+    linear-gradient(var(--color-transparent), var(--color-transparent));
+  background-position: center; */
   color: var(--color-white);
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
   margin: 0 auto;
   max-width: 320px;
-  max-height: 230px;
+  height: 230px;
   padding: 40px 20px 44px;
 }
 
@@ -95,7 +106,6 @@
   width: 0;
 }
 
-
 .library-header-list-right .link:hover::after,
 .library-header-list-right .link:focus::after,
 .library-header-list-right .main-header-li:last-child .link::after {
@@ -139,6 +149,7 @@
   background-color: #ff6b08;
   color: white;
   border: #ff6b08;
+  cursor: pointer;
 }
 
 @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
@@ -152,12 +163,15 @@
 /* TABLET */
 
 @media (min-width: 768px) {
-  .library-header-container {
+  .library-header {
     background-image: url('../images/library-background-tablet.png');
     background-image: url('../images/library-background-tablet.png'),
       linear-gradient(var(--color-transparent), var(--color-transparent));
+  }
+
+  .library-header-container {
     max-width: 768px;
-    max-height: 216px;
+    height: 220px;
     padding: 40px 32px 45px;
   }
 
@@ -190,11 +204,15 @@
 /* DESKTOP */
 
 @media (min-width: 1280px) {
-  .library-header-container {
+  .library-header {
     background-image: url('../images/library-background-desktop.png');
     background-image: url('../images/library-background-desktop.png'),
       linear-gradient(var(--color-transparent), var(--color-transparent));
+  }
+
+  .library-header-container {
     max-width: 1280px;
+    height: 220px;
     padding: 40px 32px 44px;
   }
 

@@ -3,7 +3,16 @@
   max-height: 440px;
   max-width: 280px;
   border: none;
+  transition: transform 250ms ease;
 }
+
+.movie-card-template:hover,
+.movie-card-template:focus {
+  cursor: pointer;
+  transform: scale(1.05);
+  box-shadow: 0px 6px 6px 4px rgba(0, 0, 0, 0.15);
+}
+
 @media screen and (min-width: 768px) {
   .movie-card-template {
     max-height: 495px;
@@ -69,7 +78,7 @@
 .movie-tags-year {
   font-family: 'Roboto', sans-serif;
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 600;
   color: #ff6b08;
 }
 

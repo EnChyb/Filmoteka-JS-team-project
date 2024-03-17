@@ -1,4 +1,9 @@
+<<<<<<< Updated upstream
 // inicjalizacja biblioteki firebase
+=======
+import { getStorage, ref } from firebaseConfig;
+
+>>>>>>> Stashed changes
 const firebaseConfig = {
   apiKey: 'AIzaSyDDpwcjcKhe_urNJExT9mupeVvY7ZU4amc',
   authDomain: 'filmoteka-99859.firebaseapp.com',

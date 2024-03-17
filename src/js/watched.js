@@ -14,7 +14,7 @@ import firebase from 'firebase/app';
 import 'firebase/storage';
 import { searchDetails } from './database';
 
-const cardOfMovie = document.querySelector('.movie-card');
+const cardOfMovie = document.querySelector('.movie-gallery');
 const addToWatchedButton = document.querySelector('.add-watched');
 const watchedButton = document.querySelector('.watched');
 

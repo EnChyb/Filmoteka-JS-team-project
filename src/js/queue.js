@@ -30,7 +30,7 @@ addToQueueButton.addEventListener('click', data => {
   });
   console.log(dataJSON.appId);
 });
-
+//
 // przy kilknięciu w sekcję queue dodaje się do HTML kod który. zawiera dane z kolekcji movies
 queueButton.addEventListener('click', () => {
   const markup = db

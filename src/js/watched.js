@@ -12,23 +12,25 @@ const db = firebase.firestore();
 
 import firebase from 'firebase/app';
 import 'firebase/storage';
+import { searchDetails } from './database';
 
 const cardOfMovie = document.querySelector('.movie-card');
 const addToWatchedButton = document.querySelector('.add-watched');
 const watchedButton = document.querySelector('.watched');
 
 // ma za zadanie dodanie danych do firebase
-addToWatchedButton.addEventListener('click', data => {
-  const dataJSON = JSON.stringify(data);
+addToWatchedButton.addEventListener('click', async event => {
+  const thisMovieId = event.currentTarget.querySelector('#movie-id').innerHTML;
+  const data = await searchDetails(thisMovieId);
   db.collection('watched-movies').set({
-    image: dataJSON.poster_path,
-    alt: dataJSON.outerview,
-    name: dataJSON.title,
-    tags: dataJSON.genres_ids,
-    year: dataJSON.release_date,
-    grade: dataJSON.vote_average,
+    image: data.poster_path,
+    alt: data.outerview,
+    name: data.title,
+    tags: data.genres_ids,
+    year: data.release_date,
+    grade: data.vote_average,
   });
-  console.log(dataJSON.id);
+  console.log(data.id);
 });
 
 // ma za zadanie wyświetlenie filmów

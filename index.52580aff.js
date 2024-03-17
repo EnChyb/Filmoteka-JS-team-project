@@ -22,7 +22,7 @@ let t,e,r,n,i;var o,s,a,l,u=globalThis;function f(t,e,r,n){Object.defineProperty
         </div>
         <div class="modal-info-value">
             <p class="info-value">
-                <span class="info-value__vote">${a.toFixed(2)}</span>&ensp;/&ensp;
+                <span class="info-value__vote">${a.toFixed(1)}</span>&ensp;/&ensp;
 
                 <span class="js-info-value__votes">${l}</span>
             </p>
@@ -57,4 +57,4 @@ let t,e,r,n,i;var o,s,a,l,u=globalThis;function f(t,e,r,n){Object.defineProperty
     </div>
     </div>
     </div>`}).join("");e0.insertAdjacentHTML("beforeend",r),setTimeout(e8,1e3)}(),function t(){let e=document.querySelectorAll(".movie-card-template");e.length?[...e].forEach(t=>{t.addEventListener("click",eX)}):setTimeout(t,1e3)}()}function e9(){if(e6.innerHTML="",e4>=1&&e4<=3)for(let t=1;t<=5;t++){let e=document.createElement("button");e.textContent=t,e.classList.add("page-btn"),t===e4&&e.classList.add("active"),e.addEventListener("click",()=>{e4=t,e3.params.page=e4,e7(),e9()}),e6.appendChild(e)}if(e4>=4){let t=document.createElement("button");if(t.textContent=1,t.classList.add("page-btn"),e6.appendChild(t),t.addEventListener("click",()=>{e4=1,e3.params.page=e4,e7(),e9()}),e4>=5){let t=document.createElement("button");t.textContent="...",t.classList.add("page-btn"),e6.appendChild(t)}for(let t=1;t<=5;t++){let e=document.createElement("button");e.textContent=t-3+e4,e.classList.add("page-btn"),3===t&&e.classList.add("active"),e.addEventListener("click",()=>{e4=t+e4-3,e3.params.page=e4,e7(),e9()}),e6.appendChild(e)}}}e1.addEventListener("click",function(){e4>1&&(e4--,e7(),e9())}),e2.addEventListener("click",function(){if(e4<=50)e4++,e7(),e9();else{console.log("Sorry, there are no more pages");return}}),async function(){await e7(),e9()}();const rt=document.querySelector("#modal-team-open"),re=document.querySelector("[data-modal-team-close]"),rr=document.querySelector("#modal-team");function rn(){rr.classList.toggle("is-hidden")}rt.addEventListener("click",rn),re.addEventListener("click",rn),document.addEventListener("keydown",t=>{"Escape"===t.key&&rr.classList.add("is-hidden")}),document.addEventListener("click",t=>{t.target===rr&&rr.classList.add("is-hidden")});const ri=document.querySelector(".scroll-top");window.addEventListener("scroll",()=>{window.scrollY>250?ri.classList.add("active"):ri.classList.remove("active")});
-//# sourceMappingURL=index.e58d9ba3.js.map
+//# sourceMappingURL=index.52580aff.js.map

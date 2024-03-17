@@ -1,9 +1,9 @@
-<main>
+<!-- <main>
   <div class="movie-gallery">
     <div class="movie-card"></div>
   </div>
   <div class="pagination">
-    <button class="page-btn" style="background-color: #f7f7f7">
+    <button class="page-btn prev">
       <svg><use href="../../images/icons.svg#icon-arrow-left"></use></svg>
     </button>
     <button class="page-btn">1</button>
@@ -15,8 +15,32 @@
     <button class="page-btn hidden"></button>
     <button class="page-btn hidden"></button>
     <button class="page-btn">n</button>
-    <button class="page-btn" style="background-color: #f7f7f7">
+    <button class="page-btn next">
       <svg><use href="../../images/icons.svg#icon-arrow-right"></use></svg>
+    </button>
+  </div>
+</main> -->
+
+<main>
+    <div class="loader-container">
+      <div class="loader hidden"></div>
+    </div>
+  <!-- <div>
+    <p class="loader"><span class="loader"></span></p>
+    <p class="error hidden">
+    Oops! Something went wrong! Try reloading the page!
+    </p>
+  </div> -->
+  <div class="movie-gallery" id="movie-items-lib">
+    <!-- movie-items here-->
+  </div>
+  <div class="buttons-pages">
+    <button class="page-btn prev">
+      <svg class="arrow-icon"><use href="../../images/icons.svg#icon-arrow-left"></use></svg>
+    </button>
+    <div class="pagination-container"></div>
+    <button class="page-btn next">
+      <svg class="arrow-icon"><use href="../../images/icons.svg#icon-arrow-right"></use></svg>
     </button>
   </div>
 </main>

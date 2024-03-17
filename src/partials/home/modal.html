@@ -1,53 +1,47 @@
-<head>
-    <link rel="stylesheet" href="/src/css/modal.css">
-</head>
-    <body>
-<div class="modal-filmoteka is-hidden" data-modal></div>
-<div class="modal-window">
+<div class="modal-filmoteka is-hidden"></div>
+<div class="modal-window is-hidden">
+
     <div class="modal-content">
 
-<button class="modal-close-btn" type="button" data-modal-close>
-    <svg width="30" height="30" viewbox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M8 8L22 22" stroke="black" stroke-width="2"></path>
-        <path d="M8 22L22 8" stroke="black" stroke-width="2"></path>
-    </svg>
-</button>
+        <button class="modal-close-btn" type="button" data-modal-close-window>
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 8L22 22" stroke="black" stroke-width="2"></path>
+                <path d="M8 22L22 8" stroke="black" stroke-width="2"></path>
+            </svg>
+        </button>
 
-<div class="modal-poster">
-    <img class="modal-poster-img">
-</div>
+        <div class="modal-poster">
+        </div>
 
-<div class="modal-info-film">
-<h1 class="modal-movie-title" id="movie-title">Tytuł</h1>
-<div class="modal-movie">
-    <div class="modal-movie-info-name">
-        <p class="info-name">Vote / Votes</p>
-        <p class="info-name">Popularity</p>
-        <p class="info-name">Original Title</p>
-        <p class="info-name">Genre</p>
+        <div class="modal-info-film">
+            <h1 class="modal-movie-title" id="movie-title"></h1>
+            <div class="modal-movie">
+                <div class="modal-movie-info-name">
+                    <p class="info-name">Vote / Votes</p>
+                    <p class="info-name">Popularity</p>
+                    <p class="info-name">Original Title</p>
+                    <p class="info-name">Genre</p>
+                </div>
+                <div class="modal-info-value">
+                    <p class="info-value" id="vote-average"></p>
+                    <p class="info-value" id="popularity"></p>
+                    <p class="info-value" id="original-title"></p>
+                    <p class="info-value" id="genre"></p>
+                </div>
+            </div>
+            <h2 class="modal-movie-about"></h2>
+            <p class="modal-about-text" id="about-text"></p>
+
+            <ul class="modal-btn-list">
+                <li class="modal-btn-list-item">
+                    <button class="modal-movie-btn add-watched" type="button">Add to watched</button>
+                </li>
+                <li class="modal-btn-list-item">
+                    <button class="modal-movie-btn add-queue" type="button">Add to queue</button>
+                </li>
+            </ul>
+
+        </div>
+
     </div>
-    <div class="modal-info-value">
-        <p class="info-value" id="vote-average"></p>
-        <p class="info-value" id="popularity"></p>
-        <p class="info-value" id="original-title"></p>
-        <p class="info-value" id="genre"></p>
-    </div>
 </div>
-<h2 class="modal-movie-about">About</h2>
-<p class="modal-about-text" id="about-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae expedita magni quasi similique eos nam? Esse cupiditate corporis culpa, sequi ex quibusdam rerum quidem voluptates eos non officiis quasi praesentium, illo impedit aut. Id cupiditate nulla tempore perferendis vero. Eos, facilis totam hic quos maiores et dolorum esse ut amet.</p>
-
-<ul class="modal-btn-list">
-    <li class="modal-btn-list-item">
-        <button class="modal-movie-btn add-watched" type="button">Add to watched</button>
-    </li>
-    <li class="modal-btn-list-item">
-        <button class="modal-movie-btn add-queue" type="button">Add to queue</button>
-    </li>
-</ul>
-
-</div>
-
-</div>
-</div>
-<script src="/src/js/backdrop.js"></script>
-</body>

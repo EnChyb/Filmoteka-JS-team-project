@@ -27,7 +27,7 @@ html {
 }
 
 .scroll-top.active {
-    bottom: 20px;
+    bottom: 115px;
     pointer-events: auto;
     opacity: 1;
 }

@@ -1,3 +1,7 @@
+import firebase from 'firebase';
+import 'firebase/storage';
+import { searchDetails } from './database';
+
 // inicjalizacja biblioteki firebase
 const firebaseConfig = {
   apiKey: 'AIzaSyDDpwcjcKhe_urNJExT9mupeVvY7ZU4amc',
@@ -11,9 +15,6 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-import firebase from 'firebase/app';
-import 'firebase/storage';
-
 const storage = firebase.storage();
 
 const galleryOfMovies = document.querySelector('.movie-gallery');
@@ -23,8 +24,11 @@ const queueButton = document.querySelector('.queue');
 // przy kliknięciu add to queue informacje o zdjęciu zapisują się w kolekcji movies
 addToQueueButton.addEventListener('click', data => {
   const thisMovieId = event.currentTarget.querySelector('#movie-id').innerHTML;
-  const data = await searchDetails(thisMovieId);
-  db.collection('watched-movies').set({
+  console.log(thisMovieId);
+
+  const JSONdata = await searchDetails(thisMovieId);
+  const data = JSONdata.json();
+  db.collection('queue-movies').set({
     image: data.poster_path,
     alt: data.outerview,
     name: data.title,

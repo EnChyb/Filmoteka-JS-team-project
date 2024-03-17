@@ -28,6 +28,7 @@ addToQueueButton.addEventListener('click', data => {
     year: dataJSON.release_date,
     grade: dataJSON.vote_average,
   });
+  console.log(dataJSON.appId);
 });
 
 // przy kilknięciu w sekcję queue dodaje się do HTML kod który. zawiera dane z kolekcji movies

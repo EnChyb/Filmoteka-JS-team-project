@@ -20,7 +20,7 @@ const watchedButton = document.querySelector('.watched');
 // ma za zadanie dodanie danych do firebase
 addToWatchedButton.addEventListener('click', data => {
   const dataJSON = JSON.stringify(data);
-  db.collection('movies').set({
+  db.collection('watched-movies').set({
     image: dataJSON.poster_path,
     alt: dataJSON.outerview,
     name: dataJSON.title,
@@ -33,7 +33,7 @@ addToWatchedButton.addEventListener('click', data => {
 // ma za zadanie wyświetlenie filmów
 watchedButton.addEventListener('click', () => {
   const markup = db
-    .collection('movies')
+    .collection('watched-movies')
     .get()
     .map(({ image, alt, name, tags, year, grade }) => {
       `<div class="movie-card-template">

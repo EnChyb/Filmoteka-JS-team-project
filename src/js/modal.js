@@ -65,7 +65,7 @@ async function renderModal(data) {
         </div>
         <div class="modal-info-value">
             <p class="info-value">
-                <span class="info-value__vote">${vote_average.toFixed(2)}</span>&ensp;/&ensp;
+                <span class="info-value__vote">${vote_average.toFixed(1)}</span>&ensp;/&ensp;
 
                 <span class="js-info-value__votes">${vote_count}</span>
             </p>

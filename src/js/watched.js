@@ -1,3 +1,7 @@
+import firebase from 'firebase';
+import 'firebase/storage';
+import { searchDetails } from './database';
+
 const firebaseConfig = {
   apiKey: 'AIzaSyDDpwcjcKhe_urNJExT9mupeVvY7ZU4amc',
   authDomain: 'filmoteka-99859.firebaseapp.com',
@@ -10,18 +14,17 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-import firebase from 'firebase/app';
-import 'firebase/storage';
-import { searchDetails } from './database';
-
-const cardOfMovie = document.querySelector('.movie-card');
+const cardOfMovie = document.querySelector('.movie-gallery');
 const addToWatchedButton = document.querySelector('.add-watched');
 const watchedButton = document.querySelector('.watched');
 
 // ma za zadanie dodanie danych do firebase
 addToWatchedButton.addEventListener('click', async event => {
   const thisMovieId = event.currentTarget.querySelector('#movie-id').innerHTML;
-  const data = await searchDetails(thisMovieId);
+  console.log(thisMovieId);
+
+  const JSONdata = await searchDetails(thisMovieId);
+  const data = JSONdata.json();
   db.collection('watched-movies').set({
     image: data.poster_path,
     alt: data.outerview,

@@ -10,12 +10,16 @@
   text-decoration: none;
 }
 
-.main-header-container {
+.main-header {
   background-color: var(--color-dark);
   background-image: url('../images/background-lines-mobile.png');
   background-image: url('../images/background-lines-mobile.png'),
     linear-gradient(var(--color-transparent), var(--color-transparent));
   background-position: center;
+  background-size: 100%;
+}
+
+.main-header-container {
   color: var(--color-white);
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
@@ -163,7 +167,7 @@
 }
 
 @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
-  .main-header-container {
+  .main-header {
     background-image: url('../images/background-lines-mobile@2x.png');
     background-image: url('../images/background-lines-mobile@2x.png'),
       linear-gradient(var(--color-transparent), var(--color-transparent));
@@ -173,10 +177,13 @@
 /* TABLET */
 
 @media (min-width: 768px) {
-  .main-header-container {
+  .main-header {
     background-image: url('../images/background-lines-tablet.png');
     background-image: url('../images/background-lines-tablet.png'),
       linear-gradient(var(--color-transparent), var(--color-transparent));
+  }
+
+  .main-header-container {
     max-width: 768px;
     padding: 40px 32px 45px;
   }
@@ -199,7 +206,7 @@
   }
 
   @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
-    .main-header-container {
+    .main-header {
       background-image: url('../images/background-lines-tablet@2x.png');
       background-image: url('../images/background-lines-tablet@2x.png'),
         linear-gradient(var(--color-transparent), var(--color-transparent));
@@ -210,10 +217,13 @@
 /* DESKTOP */
 
 @media (min-width: 1280px) {
-  .main-header-container {
+  .main-header {
     background-image: url('../images/background-lines-desktop.png');
     background-image: url('../images/background-lines-desktop.png'),
       linear-gradient(var(--color-transparent), var(--color-transparent));
+  }
+
+  .main-header-container {
     max-width: 1280px;
     padding: 40px 32px 44px;
   }
@@ -227,7 +237,7 @@
   }
 
   @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
-    .main-header-container {
+    .main-header {
       background-image: url('../images/background-lines-desktop@2x.png');
       background-image: url('../images/background-lines-desktop@2x.png'),
         linear-gradient(var(--color-transparent), var(--color-transparent));

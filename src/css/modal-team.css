@@ -1,30 +1,60 @@
 .is-hidden {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.modal-team-backdrop {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  transition: all 0.5s ease 0s;
+  backdrop-filter: blur(3px);
 }
 
 .modal-team-container {
-    overflow-y: scroll;
-    overflow: hidden;
-    /*height: 100%;
+  overflow-y: scroll;
+  overflow: hidden;
+  /*height: 100%;
     width: 100%;*/
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    background-color: #ffffff;
-    color: #000;
-    font-weight: 500;
-    margin-top: 20px;
-    margin-bottom: 38px;
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 1;
-    transition: all 0.5s ease 0s;
-    z-index: 150;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  background-color: #ffffff;
+  color: #000;
+  font-weight: 500;
+  margin-top: 20px;
+  margin-bottom: 38px;
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  transition: all 0.5s ease 0s;
+  z-index: 150;
 }
 
 .modal-team-content {
-    width: 311px;
-    height: 90vh;
+  background-color: #222;
+  color: #ddd;
+  width: 311px;
+  height: 90vh;
+}
 
+.modal-credits {
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  gap: 1em;
+  letter-spacing: 0.02em;
+}
+
+.modal-credits-person {
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal-credits-role {
+  text-align: center;
 }

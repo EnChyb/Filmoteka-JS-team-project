@@ -14,6 +14,8 @@ const db = firebase.firestore();
 import firebase from 'firebase/app';
 import 'firebase/storage';
 
+const storage = firebase.storage();
+
 const galleryOfMovies = document.querySelector('.movie-gallery');
 const addToQueueButton = document.querySelector('.add-queue');
 const queueButton = document.querySelector('.queue');

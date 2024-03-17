@@ -5,28 +5,17 @@
   --color-red: #ff001b;
 }
 
-.link {
-  color: inherit;
-  text-decoration: none;
-}
 
 .library-header {
-  /* background-color: rgb(15, 23, 29); */
   background-color: var(--color-dark);
   background-image: url('../images/library-background-mobile.png');
   background-image: url('../images/library-background-mobile.png'),
     linear-gradient(var(--color-transparent), var(--color-transparent));
   background-position: center;
-  background-repeat: no-repeat;
   background-size: 100%;
 }
 
 .library-header-container {
-  /* background-color: var(--color-dark);
-  background-image: url('../images/library-background-mobile.png');
-  background-image: url('../images/library-background-mobile.png'),
-    linear-gradient(var(--color-transparent), var(--color-transparent));
-  background-position: center; */
   color: var(--color-white);
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
@@ -36,61 +25,13 @@
   padding: 40px 20px 44px;
 }
 
-.first-heading {
-  display: none;
-}
-
 /* list */
-
-.main-header-list {
-  align-items: center;
-  display: flex;
-  font-weight: 500;
-  justify-content: space-between;
-  list-style: none;
-  margin-bottom: 44px;
-}
-
-.main-header-list-left {
-  align-items: center;
-  display: flex;
-  gap: 8px;
-}
-
-.logo-link {
-  display: inline-block;
-  transition: transform 250ms ease;
-}
-
-.logo-link:hover,
-.logo-link:focus {
-  transform: scale(1.1);
-}
-
-.icon-film {
-  max-width: 24px;
-  max-height: 24px;
-}
-
-.logo-text {
-  display: none;
-  font-size: 30px;
-}
 
 .library-header-list-right {
   display: flex;
   font-size: 12px;
   gap: 39px;
   text-transform: uppercase;
-}
-
-.main-header-li {
-  list-style: none;
-  position: relative;
-}
-
-.link:focus {
-  outline: none;
 }
 
 /* underline */
@@ -124,23 +65,13 @@
 .l-header-btn {
   background-color: transparent;
   color: white;
+  cursor: pointer;
   border: 2px solid white;
   border-radius: 5px;
   height: 44px;
   width: 130px;
   font-family: 'Roboto', sans-serif;
-}
-@media screen and (min-width: 768px) {
-  .l-header-btn {
-    height: 42px;
-    width: 152px;
-  }
-}
-@media screen and (min-width: 1280px) {
-  .l-header-btn {
-    height: 44px;
-    width: 148px;
-  }
+  transition: background-color 250ms ease, color 250ms ease, border 250ms ease;
 }
 
 .l-header-btn:hover,
@@ -153,16 +84,22 @@
 }
 
 @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
-  .library-header-container {
+  .library-header {
     background-image: url('../images/library-background-mobile@2x.png');
     background-image: url('../images/library-background-mobile@2x.png'),
       linear-gradient(var(--color-transparent), var(--color-transparent));
   }
 }
 
+@media screen and (min-width: 768px) {
+}
+@media screen and (min-width: 1280px) {
+}
+
 /* TABLET */
 
-@media (min-width: 768px) {
+
+@media screen and (min-width: 768px) {
   .library-header {
     background-image: url('../images/library-background-tablet.png');
     background-image: url('../images/library-background-tablet.png'),
@@ -175,25 +112,13 @@
     padding: 40px 32px 45px;
   }
 
-  .main-header-list {
-    margin-bottom: 32px;
-  }
-
-  .logo-text {
-    display: block;
-  }
-
-  .main-header-form {
-    margin: 0 auto 20px;
-    max-width: 336px;
-  }
-
-  .main-header-fail {
-    text-align: center;
+  .l-header-btn {
+    height: 42px;
+    width: 152px;
   }
 
   @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
-    .library-header-container {
+    .library-header {
       background-image: url('../images/library-background-tablet@2x.png');
       background-image: url('../images/library-background-tablet@2x.png'),
         linear-gradient(var(--color-transparent), var(--color-transparent));
@@ -203,7 +128,7 @@
 
 /* DESKTOP */
 
-@media (min-width: 1280px) {
+@media screen and (min-width: 1280px) {
   .library-header {
     background-image: url('../images/library-background-desktop.png');
     background-image: url('../images/library-background-desktop.png'),
@@ -216,16 +141,14 @@
     padding: 40px 32px 44px;
   }
 
-  .main-header-list-left {
-    gap: 10px;
-  }
 
-  .main-header-form {
-    max-width: 394px;
+  .l-header-btn {
+    height: 44px;
+    width: 148px;
   }
 
   @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
-    .library-header-container {
+    .library-header {
       background-image: url('../images/library-background-desktop@2x.png');
       background-image: url('../images/library-background-desktop@2x.png'),
         linear-gradient(var(--color-transparent), var(--color-transparent));

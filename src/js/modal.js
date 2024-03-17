@@ -1,11 +1,10 @@
 import { searchDetails } from './database';
 
-const filmModal = document.querySelector('.modal-window'); // this one should have is-hidden class - add css style based on it
+const filmModal = document.querySelector('.modal-window');
 const overlay = document.querySelector('.modal-filmoteka');
 const modalBody = document.querySelector('body');
 
 export async function openModal(e) {
-  // e.preventDefault();
   const thisMovieId = e.currentTarget.querySelector('#movie-id').innerHTML;
   console.log(thisMovieId);
   await renderModal(thisMovieId);
@@ -20,27 +19,6 @@ function closeModal(e) {
   filmModal.classList.add('is-hidden');
   overlay.classList.add('is-hidden');
 }
-
-overlay.addEventListener('click', closeModal);
-
-window.addEventListener('keydown', onEscKeyPress);
-
-// function selectMovieCards() {
-//   const movieCards = document.querySelectorAll('.movie-card-template'); // NodeList
-
-//   if (movieCards.length) {
-//     [...movieCards].forEach(movieCard => {
-//       // Add event listener for click to each movie card element
-//       movieCard.addEventListener('click', openModal);
-//     });
-//   } else {
-//     // Element not found yet, try again after a delay
-//     setTimeout(selectMovieCards, 1000);
-//   }
-// }
-
-// // Start the selection process
-// selectMovieCards();
 
 function onEscKeyPress(e) {
   const ESC_KEY_CODE = 'Escape';

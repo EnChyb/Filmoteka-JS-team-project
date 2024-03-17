@@ -10,8 +10,8 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-import { getStorage, ref } from firebaseConfig / appId;
-
+import firebase from 'firebase/app';
+import 'firebase/storage';
 
 const cardOfMovie = document.querySelector('.movie-card');
 const addToWatchedButton = document.querySelector('.add-watched');

@@ -11,7 +11,8 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-import { getStorage, ref } from firebaseConfig / appId;
+import firebase from 'firebase/app';
+import 'firebase/storage';
 
 const galleryOfMovies = document.querySelector('.movie-gallery');
 const addToQueueButton = document.querySelector('.add-queue');

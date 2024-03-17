@@ -11,7 +11,10 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-import { getStorage, ref } from firebaseConfig / appId;
+import firebase from 'firebase/app';
+import 'firebase/storage';
+
+const storage = firebase.storage();
 
 const galleryOfMovies = document.querySelector('.movie-gallery');
 const addToQueueButton = document.querySelector('.add-queue');
@@ -19,16 +22,17 @@ const queueButton = document.querySelector('.queue');
 
 // przy kliknięciu add to queue informacje o zdjęciu zapisują się w kolekcji movies
 addToQueueButton.addEventListener('click', data => {
-  const dataJSON = JSON.stringify(data);
-  db.collection('queue-movies').set({
-    image: dataJSON.poster_path,
-    alt: dataJSON.outerview,
-    name: dataJSON.title,
-    tags: dataJSON.genres_ids,
-    year: dataJSON.release_date,
-    grade: dataJSON.vote_average,
+  const thisMovieId = event.currentTarget.querySelector('#movie-id').innerHTML;
+  const data = await searchDetails(thisMovieId);
+  db.collection('watched-movies').set({
+    image: data.poster_path,
+    alt: data.outerview,
+    name: data.title,
+    tags: data.genres_ids,
+    year: data.release_date,
+    grade: data.vote_average,
   });
-  console.log(dataJSON.appId);
+  console.log(data.id);
 });
 
 // przy kilknięciu w sekcję queue dodaje się do HTML kod który. zawiera dane z kolekcji movies
@@ -51,5 +55,5 @@ queueButton.addEventListener('click', () => {
   </div>`;
     })
     .join('');
-  cardOfMovie.insertAdjacentHTML('afterstart', markup);
+  cardOfMovie.insertAdjacentHTML('afterbegin', markup);
 });

@@ -1,5 +1,6 @@
 import { searchDetails } from './database';
 
+let idFromModal;
 const filmModal = document.querySelector('.modal-window');
 const overlay = document.querySelector('.modal-filmoteka');
 const modalBody = document.querySelector('body');
@@ -12,6 +13,7 @@ export async function openModal(e) {
   overlay.classList.remove('is-hidden');
   const closeModalBtn = document.querySelector('.modal-close-btn');
   closeModalBtn.addEventListener('click', closeModal);
+  return thisMovieId;
 }
 
 function closeModal(e) {

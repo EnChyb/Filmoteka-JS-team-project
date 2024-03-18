@@ -1,2 +1,0 @@
-var e=globalThis,r={},t={},o=e.parcelRequired7c6;null==o&&((o=function(e){if(e in r)return r[e].exports;if(e in t){var o=t[e];delete t[e];var d={id:e,exports:{}};return r[e]=d,o.call(d.exports,d,d.exports),d.exports}var n=Error("Cannot find module '"+e+"'");throw n.code="MODULE_NOT_FOUND",n}).register=function(e,r){t[e]=r},e.parcelRequired7c6=o),(0,o.register)("dykmQ",function(e,r){o("lzX4I"),document.querySelector(".add-watched"),document.querySelector(".add-queue")}),o("dykmQ");
-//# sourceMappingURL=index.04df31b4.js.map

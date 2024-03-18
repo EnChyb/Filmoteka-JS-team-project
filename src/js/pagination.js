@@ -95,11 +95,15 @@ async function fetchSearch(e) {
 
     if (items.length > 0) {
       Notiflix.Notify.success(`Found ${items.length} movies for this page!`);
+      failMessage.style.opacity = 0;
     }
 
     if (items.length === 0) {
-      Notiflix.Notify.failure(`Sorry, there are no movies with searched keywords`);
+      // Notiflix.Notify.failure(`Sorry, there are no movies with searched keywords`);
+      failMessage.style.opacity = 1;
     }
+
+    searchInput.value = '';
   } catch (error) {
     Notiflix.Notify.failure(`Sorry, failed to fetch searched movies`);
     console.log(`fetchSearch error: ${error}`);

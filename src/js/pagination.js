@@ -77,19 +77,33 @@ async function fetchSearch(e) {
   if (currentPage === 1) {
     e.preventDefault();
   }
-  optionsCopy = { ...searchOptions };
-  optionsCopy.params.page = currentPage;
-  keywords = searchInput.value.split(' ').join('20%');
-  console.log(keywords);
-  optionsCopy.params.query = keywords;
+  try {
+    optionsCopy = { ...searchOptions };
+    optionsCopy.params.page = currentPage;
+    keywords = searchInput.value.split(' ').join('20%');
+    console.log(keywords);
+    optionsCopy.params.query = keywords;
 
-  items = await searchMovie();
-  console.log(items);
-  genres = await genresList();
+    items = await searchMovie();
+    console.log(items);
+    console.log('fetchsearch');
+    genres = await genresList();
 
-  loaderAdd();
-  showItems(items);
-  selectMovieCards();
+    loaderAdd();
+    showItems(items);
+    selectMovieCards();
+
+    if (items.length > 0) {
+      Notiflix.Notify.success(`Found ${items.length} movies for this page!`);
+    }
+
+    if (items.length === 0) {
+      Notiflix.Notify.failure(`Sorry, there are no movies with searched keywords`);
+    }
+  } catch (error) {
+    Notiflix.Notify.failure(`Sorry, failed to fetch searched movies`);
+    console.log(`fetchSearch error: ${error}`);
+  }
 }
 
 // failMessage.style.opacity = 1;
@@ -168,8 +182,6 @@ function showNext() {
     }
     updatePagination();
   } else {
-    // console.log('Sorry, there are no more pages');
-    //notiflix --> Sorki ale nie ma wiecej stron----------------------------------------------------------------
     Notiflix.Notify.failure('Sorry, there are no more pages');
     return;
   }

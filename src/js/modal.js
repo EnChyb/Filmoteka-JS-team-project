@@ -1,19 +1,75 @@
+import Notiflix from 'notiflix';
 import { searchDetails } from './database';
 
-let idFromModal;
 const filmModal = document.querySelector('.modal-window');
 const overlay = document.querySelector('.modal-filmoteka');
 const modalBody = document.querySelector('body');
 
 export async function openModal(e) {
   const thisMovieId = e.currentTarget.querySelector('#movie-id').innerHTML;
-  console.log(thisMovieId);
   await renderModal(thisMovieId);
   filmModal.classList.remove('is-hidden');
   overlay.classList.remove('is-hidden');
   const closeModalBtn = document.querySelector('.modal-close-btn');
+  const addWatchedRef = document.querySelector('.add-watched');
+  const addQueueRef = document.querySelector('.add-queue');
   closeModalBtn.addEventListener('click', closeModal);
-  return thisMovieId;
+
+  const addedToWatched = () => {
+    Notiflix.Notify.info(`The movie has been added to watched`);
+  };
+  const addedToQueue = () => {
+    Notiflix.Notify.info(`The movie has been added to the queue`);
+  };
+  const removeFromWatched = () => {
+    Notiflix.Notify.info(`The movie has been removed from watched`);
+  };
+  const removeFromQueue = () => {
+    Notiflix.Notify.info(`The movie has been removed from the queue`);
+  };
+  const moviesWatched = JSON.parse(localStorage.getItem('movies-watched')) || [];
+  const moviesQueue = JSON.parse(localStorage.getItem('movies-queue')) || [];
+
+  if (localStorage.length > 0) {
+    if (moviesWatched.find(item => item.id === thisMovieId)) {
+      addWatchedRef.textContent = 'remove from watched';
+    }
+  }
+  if (localStorage.length > 0) {
+    if (moviesQueue.find(item => item.id === thisMovieId)) {
+      addQueueRef.textContent = 'remove from queue';
+    }
+  }
+  const onWatchedClick = async e => {
+    console.log(thisMovieId);
+    const data = await searchDetails(thisMovieId);
+    if (!moviesWatched.find(item => item.id === thisMovieId)) {
+      moviesWatched.push(data);
+      localStorage.setItem('movies-watched', JSON.stringify(moviesWatched));
+      addedToWatched();
+      return;
+    }
+    let index = moviesWatched.findIndex(object => object.id === thisMovieId);
+    moviesWatched.splice(index, 1);
+    localStorage.setItem('movies-watched', JSON.stringify(moviesWatched));
+    removeFromWatched();
+  };
+  const onQueueClick = async () => {
+    console.log(thisMovieId);
+    const data = await searchDetails(thisMovieId);
+    if (!moviesQueue.find(item => item.id === thisMovieId)) {
+      moviesQueue.push(data);
+      localStorage.setItem('movies-queue', JSON.stringify(moviesQueue));
+      addedToQueue();
+      return;
+    }
+    let index = moviesQueue.findIndex(object => object.id === thisMovieId);
+    moviesQueue.splice(index, 1);
+    localStorage.setItem('movies-queue', JSON.stringify(moviesQueue));
+    infoRemoveFromQueue();
+  };
+  addWatchedRef.addEventListener('click', onWatchedClick);
+  addQueueRef.addEventListener('click', onQueueClick);
 }
 
 function closeModal(e) {
@@ -40,6 +96,7 @@ async function renderModal(data) {
     poster_path,
     original_title,
     title,
+    id,
     overview,
     genres,
     popularity,
@@ -61,6 +118,7 @@ async function renderModal(data) {
         </div>
         <div class="modal-info-film">
             <h1 class="modal-movie-title">${title}</h1>
+            <h2 id="movie-id-modal" class="is-hidden">${id}</h2>
     <div class="modal-movie">
         <div class="modal-movie-info-name">
             <p class="info-name">Vote / Votes</p>

@@ -1,40 +1,50 @@
 import Notiflix from 'notiflix';
-import { searchPopular, genresList, popularOptions } from './database';
+import {
+  searchMovie,
+  searchOptions,
+  searchPopular,
+  genresList,
+  popularOptions,
+} from './database.js';
 import { openModal } from './modal';
 const photoCard = document.querySelector('.movie-gallery');
 const prevButton = document.querySelector('.page-btn.prev');
 const nextButton = document.querySelector('.page-btn.next');
 const paginationContainer = document.querySelector('.pagination-container');
 
-// paździerzowo wykonany loader 
+const searchInput = document.querySelector('.main-header-input');
+const searchForm = document.querySelector('.main-header-form');
+const failMessage = document.querySelector('.main-header-fail');
+const searchSubmit = document.querySelector('.main-header-submit');
+
+// paździerzowo wykonany loader
 const loader = document.querySelector('.loader');
 
-function loaderRemove() {
-  loader.classList.add("hidden");
-  photoCard.classList.remove("hidden");
-  paginationContainer.classList.remove("hidden");
-  prevButton.classList.remove("hidden");
-  nextButton.classList.remove("hidden");
+export function loaderRemove() {
+  loader.classList.add('hidden');
+  photoCard.classList.remove('hidden');
+  paginationContainer.classList.remove('hidden');
+  prevButton.classList.remove('hidden');
+  nextButton.classList.remove('hidden');
 }
-function loaderAdd() {
-  loader.classList.remove("hidden");
-  photoCard.classList.add("hidden");
-  paginationContainer.classList.add("hidden");
-  prevButton.classList.add("hidden");
-  nextButton.classList.add("hidden");
+export function loaderAdd() {
+  loader.classList.remove('hidden');
+  photoCard.classList.add('hidden');
+  paginationContainer.classList.add('hidden');
+  prevButton.classList.add('hidden');
+  nextButton.classList.add('hidden');
 }
 
-
+let keywords;
 const lastPage = 50;
-// let activeButton;
 let currentPage = 1;
 let items;
-let popularOptionsCopy = { ...popularOptions }; // Create a copy of popularOptions
+let optionsCopy = { ...popularOptions }; // Create a copy of popularOptions
 let genres;
 
 // fetching informacji do kart
 
-function selectMovieCards() {
+export function selectMovieCards() {
   const movieCards = document.querySelectorAll('.movie-card-template'); // NodeList
 
   if (movieCards.length) {
@@ -49,23 +59,45 @@ function selectMovieCards() {
 }
 
 async function fetchItems() {
-  popularOptionsCopy.params.page = currentPage;
+  optionsCopy = { ...popularOptions };
+  optionsCopy.params.page = currentPage;
 
   items = await searchPopular();
   genres = await genresList();
   // console.log(genres);
   loaderAdd();
-  showItems();
+  showItems(items);
   // genres = await genresList();
   // Start the selection process
   selectMovieCards();
   // console.log(items);
-
 }
 
+async function fetchSearch(e) {
+  if (currentPage === 1) {
+    e.preventDefault();
+  }
+  optionsCopy = { ...searchOptions };
+  optionsCopy.params.page = currentPage;
+  keywords = searchInput.value.split(' ').join('20%');
+  console.log(keywords);
+  optionsCopy.params.query = keywords;
+
+  items = await searchMovie();
+  console.log(items);
+  genres = await genresList();
+
+  loaderAdd();
+  showItems(items);
+  selectMovieCards();
+}
+
+// failMessage.style.opacity = 1;
+
+searchForm.addEventListener('submit', fetchSearch);
 // wyświetl karty
 
-function showItems() {
+export function showItems(items) {
   let pageItems = items;
   const itemsContainer = document.querySelector('#movie-items');
   itemsContainer.innerHTML = '';
@@ -113,7 +145,11 @@ function showItems() {
 function showPrev() {
   if (currentPage > 1) {
     currentPage--;
-    fetchItems();
+    if (searchInput.value === '') {
+      fetchItems();
+    } else {
+      fetchSearch();
+    }
     updatePagination();
   } else {
     return;
@@ -125,7 +161,11 @@ function showPrev() {
 function showNext() {
   if (currentPage <= lastPage) {
     currentPage++;
-    fetchItems();
+    if (searchInput.value === '') {
+      fetchItems();
+    } else {
+      fetchSearch();
+    }
     updatePagination();
   } else {
     // console.log('Sorry, there are no more pages');
@@ -151,8 +191,12 @@ function updatePagination() {
       }
       pageButton.addEventListener('click', () => {
         currentPage = i;
-        popularOptionsCopy.params.page = currentPage;
-        fetchItems();
+        optionsCopy.params.page = currentPage;
+        if (searchInput.value === '') {
+          fetchItems();
+        } else {
+          fetchSearch();
+        }
         updatePagination();
       });
       paginationContainer.appendChild(pageButton);
@@ -166,8 +210,12 @@ function updatePagination() {
     paginationContainer.appendChild(pageButton);
     pageButton.addEventListener('click', () => {
       currentPage = 1;
-      popularOptionsCopy.params.page = currentPage;
-      fetchItems();
+      optionsCopy.params.page = currentPage;
+      if (searchInput.value === '') {
+        fetchItems();
+      } else {
+        fetchSearch();
+      }
       updatePagination();
     });
 
@@ -186,8 +234,12 @@ function updatePagination() {
       }
       pageButton.addEventListener('click', () => {
         currentPage = i + currentPage - 3;
-        popularOptionsCopy.params.page = currentPage;
-        fetchItems();
+        optionsCopy.params.page = currentPage;
+        if (searchInput.value === '') {
+          fetchItems();
+        } else {
+          fetchSearch();
+        }
         updatePagination();
       });
       paginationContainer.appendChild(pageButton);
@@ -198,7 +250,6 @@ function updatePagination() {
 async function initialize() {
   await fetchItems();
   updatePagination();
-
 }
 
 initialize();

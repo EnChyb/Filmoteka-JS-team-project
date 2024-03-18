@@ -1,5 +1,6 @@
 .footer {
   display: flex;
+  align-self: flex-end;
   justify-content: center;
   align-items: center;
   background-color: #f7f7f7;
@@ -18,14 +19,28 @@
   }
 }
 
+.footer-text-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
 .footer-paragraph {
   color: #545454;
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
+  text-align: center;
 }
+
 @media screen and (min-width: 768px) {
   .footer-paragraph {
     font-size: 19px;
+  }
+  .footer-text-wrap {
+    display: flex;
+    flex-direction: row;
   }
 }
 
@@ -42,7 +57,7 @@
 }
 @media screen and (min-width: 768px) {
   .icon-heart {
-    height: 19px;
-    width: 19px;
+    height: 16px;
+    width: 16px;
   }
 }

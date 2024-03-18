@@ -67,7 +67,8 @@ transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1),
 }
 
 .modal-close-btn:hover,
-.modal-close-btn:focus {
+.modal-close-btn:focus,
+.modal-close-btn:active {
   background-color: #ff6b08;
 }
 

@@ -1,26 +1,24 @@
 import { genresList } from './database';
-const gallery = document.querySelector('.movie-gallery');
-
+const gallery = document.querySelector('#movie-items-lib');
 const watched = document.querySelector('.watched');
 const queue = document.querySelector('.queue');
 
 watched.addEventListener('click', async () => {
-  const array = localStorage.getItem('movies-watched');
+  const array = JSON.parse(localStorage.getItem('movies-watched')); // parse JSON string to object;
+  console.log(array);
+  const genres = await genresList();
   const markup = array
-    .json()
     .map(({ poster_path, title, vote_average, release_date, genre_ids, id }) => {
-      genres = await genresList();
       const allGenresNames = {};
       const genreArray = [];
       genres.map(genre => {
         allGenresNames[genre.id] = genre.name;
-
         if (genre_ids.includes(genre.id)) {
           genreArray.push(genre.name);
         }
         return genreArray;
       });
-      gallery.innerHTML = `
+      return `
     <div class="movie-card-template" data-modal-open-window>
     <h2 id="movie-id" class="is-hidden">${id}</h2>
     <a class="movie-image">
@@ -38,5 +36,7 @@ watched.addEventListener('click', async () => {
     </div>
     </div>
     </div>`;
-    });
+    })
+    .join('');
+  gallery.insertAdjacentHTML('afterbegin', markup);
 });

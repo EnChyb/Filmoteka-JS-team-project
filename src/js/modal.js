@@ -30,9 +30,12 @@ export async function openModal(e) {
   const moviesWatched = JSON.parse(localStorage.getItem('movies-watched')) || [];
   const moviesQueue = JSON.parse(localStorage.getItem('movies-queue')) || [];
 
-  if (localStorage.length > 0) {
+  /* if (localStorage.length > 0) {
     if (moviesWatched.find(item => item.id === thisMovieId)) {
       addWatchedRef.textContent = 'remove from watched';
+      addWatchedRef.addEventListener('click', () => {
+        localStorage.removeItem(item);
+      });
     }
   }
   if (localStorage.length > 0) {
@@ -40,38 +43,49 @@ export async function openModal(e) {
       addQueueRef.textContent = 'remove from queue';
     }
   }
-  const onWatchedClick = async e => {
-    console.log(thisMovieId);
-    const data = await searchDetails(thisMovieId);
-    if (!moviesWatched.find(item => item.id === thisMovieId)) {
-      moviesWatched.push(data);
-      localStorage.setItem('movies-watched', JSON.stringify(moviesWatched));
-      addedToWatched();
-      return;
+  */
+  const onWatchedClick = async () => {
+    addWatchedRef.textContent = 'remove from watched';
+    if (addWatchedRef.textContent == 'remove from watched') {
+      for (let movie of moviesWatched) {
+        if (movie.id === thisMovieId) {
+          localStorage.removeItem(movie);
+        }
+      }
+      addWatchedRef.textContent = 'add to watch';
+      if (addWatchedRef.textContent == 'add to watch') {
+        console.log(thisMovieId);
+        const data = await searchDetails(thisMovieId);
+        if (!moviesWatched.find(item => item.id === thisMovieId)) {
+          moviesWatched.push(data);
+          localStorage.setItem('movies-watched', JSON.stringify(moviesWatched));
+          addedToWatched();
+          return;
+        }
+        //let index = moviesWatched.findIndex(object => object.id === thisMovieId);
+        //moviesWatched.splice(index, 1);
+        localStorage.setItem('movies-watched', JSON.stringify(moviesWatched));
+        removeFromWatched();
+      }
     }
-    let index = moviesWatched.findIndex(object => object.id === thisMovieId);
-    moviesWatched.splice(index, 1);
-    localStorage.setItem('movies-watched', JSON.stringify(moviesWatched));
-    removeFromWatched();
-  };
-  const onQueueClick = async () => {
-    console.log(thisMovieId);
-    const data = await searchDetails(thisMovieId);
-    if (!moviesQueue.find(item => item.id === thisMovieId)) {
-      moviesQueue.push(data);
+    const onQueueClick = async () => {
+      console.log(thisMovieId);
+      const data = await searchDetails(thisMovieId);
+      if (!moviesQueue.find(item => item.id === thisMovieId)) {
+        moviesQueue.push(data);
+        localStorage.setItem('movies-queue', JSON.stringify(moviesQueue));
+        addedToQueue();
+        return;
+      }
+      //let index = moviesQueue.findIndex(object => object.id === thisMovieId);
+      //moviesQueue.splice(index, 1);
       localStorage.setItem('movies-queue', JSON.stringify(moviesQueue));
-      addedToQueue();
-      return;
-    }
-    let index = moviesQueue.findIndex(object => object.id === thisMovieId);
-    moviesQueue.splice(index, 1);
-    localStorage.setItem('movies-queue', JSON.stringify(moviesQueue));
-    infoRemoveFromQueue();
+      infoRemoveFromQueue();
+    };
+    addWatchedRef.addEventListener('click', onWatchedClick);
+    addQueueRef.addEventListener('click', onQueueClick);
   };
-  addWatchedRef.addEventListener('click', onWatchedClick);
-  addQueueRef.addEventListener('click', onQueueClick);
 }
-
 function closeModal(e) {
   e.preventDefault();
   filmModal.classList.add('is-hidden');

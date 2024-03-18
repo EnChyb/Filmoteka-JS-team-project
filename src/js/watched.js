@@ -1,5 +1,6 @@
 import 'firebase/storage';
 import { searchDetails } from './database';
+import { openModal } from './modal';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyDDpwcjcKhe_urNJExT9mupeVvY7ZU4amc',
@@ -19,9 +20,8 @@ const watchedButton = document.querySelector('.watched');
 
 // ma za zadanie dodanie danych do firebase
 addToWatchedButton.addEventListener('click', async event => {
-  const thisMovieId = event.currentTarget.querySelector('#movie-id').innerHTML;
+  const { thisMovieId } = openModal();
   console.log(thisMovieId);
-
   const data = await searchDetails(thisMovieId);
   db.collection('watched-movies').set({
     image: data.poster_path,

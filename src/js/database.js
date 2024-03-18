@@ -9,7 +9,7 @@ const photoCard = document.querySelector('.movie-gallery');
 // database domyślnie ma 42863 stron każda po 20 filmów
 // i w sumie jest 857258 wyników mamy w czym wybierać xDD
 
-let movieId;
+export let movieId;
 let keywords = 'black%20panther'; // słowo/słowa klucz do wywołania z inputa
 //domyślnie baza danych łączy słowa używając "%20"
 let language = 'en-US'; // lista do wyrenderowania ze strony lub zrobimy własną, żeby okroić projekt

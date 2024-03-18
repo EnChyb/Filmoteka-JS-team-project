@@ -5,6 +5,7 @@
   --color-red: #ff001b;
 }
 
+
 .library-header {
   background-color: var(--color-dark);
   background-image: url('../images/library-background-mobile.png');
@@ -20,7 +21,7 @@
   font-size: 14px;
   margin: 0 auto;
   max-width: 320px;
-  max-height: 230px;
+  height: 230px;
   padding: 40px 20px 44px;
 }
 
@@ -79,6 +80,7 @@
   background-color: #ff6b08;
   color: white;
   border: #ff6b08;
+  cursor: pointer;
 }
 
 @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
@@ -96,6 +98,7 @@
 
 /* TABLET */
 
+
 @media screen and (min-width: 768px) {
   .library-header {
     background-image: url('../images/library-background-tablet.png');
@@ -105,7 +108,7 @@
 
   .library-header-container {
     max-width: 768px;
-    max-height: 216px;
+    height: 220px;
     padding: 40px 32px 45px;
   }
 
@@ -134,8 +137,10 @@
 
   .library-header-container {
     max-width: 1280px;
+    height: 220px;
     padding: 40px 32px 44px;
   }
+
 
   .l-header-btn {
     height: 44px;

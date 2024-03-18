@@ -18,10 +18,6 @@
   max-width: 100%;
 }
 
-.buttons-pages {
-  margin-top: 40px;
-}
-
 .buttons-pages,
 .pagination-container {
   display: flex;
@@ -29,7 +25,8 @@
 }
 
 .buttons-pages {
-  padding-top: 48px;
+  margin-top: 64px;
+  margin-bottom: 40px;
 }
 
 .page-btn {
@@ -106,6 +103,10 @@
     column-gap: 32px;
     row-gap: 78px;
     padding: 44px 32px 64px 32px;
+  }
+  .buttons-pages {
+    margin-top: 60px;
+    margin-bottom: 60px;
   }
 }
 

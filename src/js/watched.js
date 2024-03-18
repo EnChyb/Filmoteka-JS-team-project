@@ -18,14 +18,13 @@ addToWatchedButton.addEventListener('click', async event => {
     year: data.release_date,
     grade: data.vote_average,
   };
-  localStorage.setItem('localStorageData', JSON.stringify('settings'));
+  localStorage.setItem('localStorageData', JSON.stringify(localStorageData));
 });
 
 // ma za zadanie wyświetlenie filmów
 watchedButton.addEventListener('click', () => {
-  const markup = db
-    .collection('watched-movies')
-    .get()
+  const markup = localStorage
+    .getItem('localStorageData')
     .map(({ image, alt, name, tags, year, grade }) => {
       `<div class="movie-card-template">
         <a class="movie-image">

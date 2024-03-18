@@ -13,7 +13,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-const cardOfMovie = document.querySelector('.movie-gallery');
+const movieGallery = document.querySelector('.movie-gallery');
 const addToWatchedButton = document.querySelector('.add-watched');
 const watchedButton = document.querySelector('.watched');
 
@@ -22,8 +22,7 @@ addToWatchedButton.addEventListener('click', async event => {
   const thisMovieId = event.currentTarget.querySelector('#movie-id').innerHTML;
   console.log(thisMovieId);
 
-  const JSONdata = await searchDetails(thisMovieId);
-  const data = JSONdata.json();
+  const data = await searchDetails(thisMovieId);
   db.collection('watched-movies').set({
     image: data.poster_path,
     alt: data.outerview,
@@ -55,5 +54,5 @@ watchedButton.addEventListener('click', () => {
     </div>`;
     })
     .join('');
-  cardOfMovie.insertAdjacentHTML('afterbegin', markup);
+  movieGallery.insertAdjacentHTML('afterbegin', markup);
 });

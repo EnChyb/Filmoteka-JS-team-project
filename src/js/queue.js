@@ -1,4 +1,3 @@
-import 'firebase/storage';
 import { searchDetails } from './database';
 
 // inicjalizacja biblioteki firebase

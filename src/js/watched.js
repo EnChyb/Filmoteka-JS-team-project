@@ -1,4 +1,3 @@
-import firebase from 'firebase';
 import 'firebase/storage';
 import { searchDetails } from './database';
 

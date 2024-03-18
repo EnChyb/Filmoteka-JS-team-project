@@ -1,4 +1,4 @@
-import 'firebase/storage';
+import firebase from 'firebase';
 import { searchDetails } from './database';
 import { openModal } from './modal';
 

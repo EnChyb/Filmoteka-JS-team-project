@@ -20,7 +20,7 @@ const watchedButton = document.querySelector('.watched');
 
 // ma za zadanie dodanie danych do firebase
 addToWatchedButton.addEventListener('click', async event => {
-  const { thisMovieId } = openModal();
+  const thisMovieId = openModal();
   console.log(thisMovieId);
   const data = await searchDetails(thisMovieId);
   db.collection('watched-movies').set({

@@ -1,23 +1,19 @@
-import { genresList } from './database';
+import { openModal } from './modal';
+import { selectMovieCards } from './pagination';
 const gallery = document.querySelector('#movie-items-lib');
-const watched = document.querySelector('.watched');
-const queue = document.querySelector('.queue');
+const watched = document.querySelector('#watched');
+const queue = document.querySelector('#queue');
 
-watched.addEventListener('click', async () => {
+watched.addEventListener('click', () => {
   const array = JSON.parse(localStorage.getItem('movies-watched')); // parse JSON string to object;
   console.log(array);
-  const genres = await genresList();
+  gallery.innerHTML = '';
   const markup = array
-    .map(({ poster_path, title, vote_average, release_date, genre_ids, id }) => {
-      const allGenresNames = {};
+    .map(({ poster_path, title, vote_average, release_date, genres, id }) => {
       const genreArray = [];
-      genres.map(genre => {
-        allGenresNames[genre.id] = genre.name;
-        if (genre_ids.includes(genre.id)) {
-          genreArray.push(genre.name);
-        }
-        return genreArray;
-      });
+      for (const genre of genres) {
+        genreArray.push(genre.name);
+      }
       return `
     <div class="movie-card-template" data-modal-open-window>
     <h2 id="movie-id" class="is-hidden">${id}</h2>
@@ -39,4 +35,5 @@ watched.addEventListener('click', async () => {
     })
     .join('');
   gallery.insertAdjacentHTML('afterbegin', markup);
+  // selectMovieCards();
 });

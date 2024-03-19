@@ -1,12 +1,8 @@
-<<<<<<< Updated upstream
 import { genresList } from './database';
-=======
->>>>>>> Stashed changes
 const gallery = document.querySelector('#movie-items-lib');
 const watched = document.querySelector('.watched');
 const queue = document.querySelector('.queue');
 
-<<<<<<< Updated upstream
 watched.addEventListener('click', async () => {
   const array = JSON.parse(localStorage.getItem('movies-watched')); // parse JSON string to object;
   console.log(array);
@@ -14,14 +10,11 @@ watched.addEventListener('click', async () => {
   const markup = array
     .map(({ poster_path, title, vote_average, release_date, genre_ids, id }) => {
       const allGenresNames = {};
-=======
->>>>>>> Stashed changes
 watched.addEventListener('click', () => {
   const arrayWatched = JSON.parse(localStorage.getItem('movies-watched')); // parse JSON string to object;
   console.log(arrayWatched);
   gallery.innerHTML = '';
   const markupWatched = arrayWatched
-<<<<<<< Updated upstream
     .map(({ poster_path, title, vote_average, release_date, genres, id }) => {
       const genreArray = [];
       genres.map(genre => {
@@ -59,8 +52,6 @@ queue.addEventListener('click', () => {
   console.log(arrayQueue);
   gallery.innerHTML = '';
   const markupQueue = arrayQueue
-=======
->>>>>>> Stashed changes
     .map(({ poster_path, title, vote_average, release_date, genres, id }) => {
       const genreArray = [];
       for (const genre of genres) {

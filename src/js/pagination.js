@@ -92,6 +92,7 @@ async function fetchSearch(e) {
   loaderAdd();
   showItems(items);
   selectMovieCards();
+  searchInput.value = '';
 }
 
 // failMessage.style.opacity = 1;

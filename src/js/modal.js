@@ -1,11 +1,11 @@
 import Notiflix from 'notiflix';
 import { searchDetails } from './database';
 
-const filmModal = document.querySelector('.modal-window');
-const overlay = document.querySelector('.modal-filmoteka');
 const modalBody = document.querySelector('body');
 
 export async function openModal(e) {
+  const filmModal = document.querySelector('#modal-window');
+  const overlay = document.querySelector('#modal-filmoteka');
   const thisMovieId = e.currentTarget.querySelector('#movie-id').innerHTML;
   await renderModal(thisMovieId);
   filmModal.classList.remove('is-hidden');
@@ -14,6 +14,8 @@ export async function openModal(e) {
   const addWatchedRef = document.querySelector('.add-watched');
   const addQueueRef = document.querySelector('.add-queue');
   closeModalBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', closeModal);
+  window.addEventListener('keydown', onEscKeyPress);
 
   const addedToWatched = () => {
     Notiflix.Notify.info(`The movie has been added to watched`);
@@ -30,64 +32,60 @@ export async function openModal(e) {
   const moviesWatched = JSON.parse(localStorage.getItem('movies-watched')) || [];
   const moviesQueue = JSON.parse(localStorage.getItem('movies-queue')) || [];
 
-  /* if (localStorage.length > 0) {
-    if (moviesWatched.find(item => item.id === thisMovieId)) {
+  for (const movie of moviesWatched) {
+    if (String(movie.id) === thisMovieId) {
       addWatchedRef.textContent = 'remove from watched';
-      addWatchedRef.addEventListener('click', () => {
-        localStorage.removeItem(item);
-      });
     }
   }
-  if (localStorage.length > 0) {
-    if (moviesQueue.find(item => item.id === thisMovieId)) {
-      addQueueRef.textContent = 'remove from queue';
-    }
-  }
-  */
+
   const onWatchedClick = async () => {
-    addWatchedRef.textContent = 'remove from watched';
-    if (addWatchedRef.textContent == 'remove from watched') {
-      for (let movie of moviesWatched) {
-        if (movie.id === thisMovieId) {
-          localStorage.removeItem(movie);
-        }
-      }
-      addWatchedRef.textContent = 'add to watch';
-      if (addWatchedRef.textContent == 'add to watch') {
-        console.log(thisMovieId);
-        const data = await searchDetails(thisMovieId);
-        if (!moviesWatched.find(item => item.id === thisMovieId)) {
-          moviesWatched.push(data);
+    if (addWatchedRef.textContent.toUpperCase() === 'REMOVE FROM WATCHED') {
+      addWatchedRef.textContent = 'add to watched';
+
+      for (const movie of moviesWatched) {
+        if (String(movie.id) === thisMovieId) {
+          const pos = moviesWatched.map(e => e.id).indexOf(Number(thisMovieId));
+          moviesWatched.splice(pos, 1);
           localStorage.setItem('movies-watched', JSON.stringify(moviesWatched));
-          addedToWatched();
-          return;
+          removeFromWatched();
         }
-        //let index = moviesWatched.findIndex(object => object.id === thisMovieId);
-        //moviesWatched.splice(index, 1);
-        localStorage.setItem('movies-watched', JSON.stringify(moviesWatched));
-        removeFromWatched();
       }
-    }
-    const onQueueClick = async () => {
-      console.log(thisMovieId);
+
+      console.log(moviesWatched);
+    } else if (addWatchedRef.textContent.toUpperCase() == 'ADD TO WATCHED') {
+      addWatchedRef.textContent = 'remove from watched';
       const data = await searchDetails(thisMovieId);
-      if (!moviesQueue.find(item => item.id === thisMovieId)) {
-        moviesQueue.push(data);
-        localStorage.setItem('movies-queue', JSON.stringify(moviesQueue));
-        addedToQueue();
-        return;
+      if (!moviesWatched.find(item => item.id === thisMovieId)) {
+        moviesWatched.push(data);
+        localStorage.setItem('movies-watched', JSON.stringify(moviesWatched));
+        addedToWatched();
       }
-      //let index = moviesQueue.findIndex(object => object.id === thisMovieId);
-      //moviesQueue.splice(index, 1);
-      localStorage.setItem('movies-queue', JSON.stringify(moviesQueue));
-      infoRemoveFromQueue();
-    };
-    addWatchedRef.addEventListener('click', onWatchedClick);
-    addQueueRef.addEventListener('click', onQueueClick);
+      console.log(moviesWatched);
+    }
   };
+  addWatchedRef.addEventListener('click', onWatchedClick);
 }
+
+const onQueueClick = async () => {
+  console.log(thisMovieId);
+  const data = await searchDetails(thisMovieId);
+  if (!moviesQueue.find(item => item.id === thisMovieId)) {
+    moviesQueue.push(data);
+    localStorage.setItem('movies-queue', JSON.stringify(moviesQueue));
+    addedToQueue();
+    return;
+  }
+  //let index = moviesQueue.findIndex(object => object.id === thisMovieId);
+  //moviesQueue.splice(index, 1);
+  localStorage.setItem('movies-queue', JSON.stringify(moviesQueue));
+  infoRemoveFromQueue();
+  addQueueRef.addEventListener('click', onQueueClick);
+};
+
 function closeModal(e) {
   e.preventDefault();
+  const filmModal = document.querySelector('#modal-window');
+  const overlay = document.querySelector('#modal-filmoteka');
   filmModal.classList.add('is-hidden');
   overlay.classList.add('is-hidden');
 }
@@ -105,6 +103,7 @@ function onEscKeyPress(e) {
 }
 
 async function renderModal(data) {
+  const movieModal = document.querySelector('#modal-window');
   const details = await searchDetails(data);
   const {
     poster_path,
@@ -117,7 +116,7 @@ async function renderModal(data) {
     vote_average,
     vote_count,
   } = details;
-  filmModal.innerHTML = `
+  movieModal.innerHTML = `
     <div class="modal-content">
         <button class = "modal-close-btn">
         <svg width="30" height="30" viewbox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">

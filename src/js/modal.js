@@ -1,7 +1,7 @@
 import Notiflix from 'notiflix';
 import { searchDetails } from './database';
 
-const modalBody = document.querySelector('body');
+// const modalBody = document.querySelector('body');
 
 export async function openModal(e) {
   const filmModal = document.querySelector('#modal-window');

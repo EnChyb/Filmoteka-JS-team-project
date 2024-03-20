@@ -79,6 +79,9 @@ async function fetchSearch(e) {
   if (currentPage === 1) {
     e.preventDefault();
   }
+
+  failMessage.style.opacity = 0;
+
   optionsCopy = { ...searchOptions };
   optionsCopy.params.page = currentPage;
 
@@ -89,12 +92,14 @@ async function fetchSearch(e) {
   console.log(items);
   genres = await genresList();
 
+  if (items.length === 0) {
+    failMessage.style.opacity = 1;
+  }
+
   loaderAdd();
   showItems(items);
   selectMovieCards();
 }
-
-// failMessage.style.opacity = 1;
 
 searchForm.addEventListener('submit', fetchSearch);
 // wyświetl karty
@@ -170,8 +175,6 @@ function showNext() {
     }
     updatePagination();
   } else {
-    // console.log('Sorry, there are no more pages');
-    //notiflix --> Sorki ale nie ma wiecej stron----------------------------------------------------------------
     Notiflix.Notify.failure('Sorry, there are no more pages');
     return;
   }

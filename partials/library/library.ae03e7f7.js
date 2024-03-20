@@ -2,7 +2,7 @@ function t(t){return t&&t.__esModule?t.default:t}function e(t,e,i,n){Object.defi
     <div class="movie-card-template" data-modal-open-window>
     <h2 id="movie-id" class="is-hidden">${a}</h2>
     <a class="movie-image">
-    <img class="movie-image-detail" src="https://image.tmdb.org/t/p/w500${t}?api_key=a53cba9b0d8796262c7859f0f1e4d0eb"
+    <img class="movie-image-detail" src="https://image.tmdb.org/t/p/w500${t}?api_key=a53cba9b0d8796262c7859f0f1e4d0eb" onerror="this.src='https://cdn.pixabay.com/photo/2019/04/24/21/55/cinema-4153289_960_720.jpg';"
     alt="film-poster" />
     </a>
     <div class="movie-info">
@@ -21,7 +21,9 @@ function t(t){return t&&t.__esModule?t.default:t}function e(t,e,i,n){Object.defi
                 </svg>
         </button>
         <div class="modal-poster">
-        <img class="movie-image-detail" src="https://image.tmdb.org/t/p/w342${i}?api_key=a53cba9b0d8796262c7859f0f1e4d0eb"
+        <img class="movie-image-detail"
+        src="https://image.tmdb.org/t/p/w342${i}?api_key=a53cba9b0d8796262c7859f0f1e4d0eb"
+        onerror="this.src='https://cdn.pixabay.com/photo/2019/04/24/21/55/cinema-4153289_960_720.jpg';"
         alt="film-poster" />
         </a>
         </div>
@@ -61,7 +63,9 @@ function t(t){return t&&t.__esModule?t.default:t}function e(t,e,i,n){Object.defi
     <div class="movie-card-template" data-modal-open-window>
     <h2 id="movie-id" class="is-hidden">${a}</h2>
     <a class="movie-image">
-    <img class="movie-image-detail" src="https://image.tmdb.org/t/p/w500${t}?api_key=a53cba9b0d8796262c7859f0f1e4d0eb"
+    <img class="movie-image-detail"
+    src="https://image.tmdb.org/t/p/w500${t}?api_key=a53cba9b0d8796262c7859f0f1e4d0eb"
+    onerror="this.src='https://cdn.pixabay.com/photo/2019/04/24/21/55/cinema-4153289_960_720.jpg';"
     alt="film-poster" />
     </a>
     <div class="movie-info">
@@ -72,4 +76,4 @@ function t(t){return t&&t.__esModule?t.default:t}function e(t,e,i,n){Object.defi
     </div>
     </div>
     </div>`}).join("");c.insertAdjacentHTML("beforeend",e),setTimeout(y,1e3)}function S(){if(d.innerHTML="",w>=1&&w<=3)for(let t=1;t<=5;t++){let e=document.createElement("button");e.textContent=t,e.classList.add("page-btn"),t===w&&e.classList.add("active"),e.addEventListener("click",()=>{w=t,v.params.page=w,""===m.value?N():C(),S()}),d.appendChild(e)}if(w>=4){let t=document.createElement("button");if(t.textContent=1,t.classList.add("page-btn"),d.appendChild(t),t.addEventListener("click",()=>{w=1,v.params.page=w,""===m.value?N():C(),S()}),w>=5){let t=document.createElement("button");t.textContent="...",t.classList.add("page-btn"),d.appendChild(t)}for(let t=1;t<=5;t++){let e=document.createElement("button");e.textContent=t-3+w,e.classList.add("page-btn"),3===t&&e.classList.add("active"),e.addEventListener("click",()=>{w=t+w-3,v.params.page=w,""===m.value?N():C(),S()}),d.appendChild(e)}}}h.addEventListener("submit",C),u.addEventListener("click",function(){w>1&&(w--,""===m.value?N():C(),S())}),p.addEventListener("click",function(){if(w<=50)w++,""===m.value?N():C(),S();else{t(s).Notify.failure("Sorry, there are no more pages");return}}),async function(){await N(),S()}()}),a("dykmQ");
-//# sourceMappingURL=library.88b1b1ea.js.map
+//# sourceMappingURL=library.ae03e7f7.js.map

@@ -1,7 +1,12 @@
 import Notiflix from 'notiflix';
 import { searchDetails } from './database';
 
+<<<<<<< Updated upstream
 const filmModal = document.querySelector('.modal-window');
+=======
+const modalDiv = document.querySelector('#modal-window');
+const filmModal = document.querySelector('.modal-content');
+>>>>>>> Stashed changes
 const overlay = document.querySelector('.modal-filmoteka');
 const modalBody = document.querySelector('body');
 
@@ -10,11 +15,19 @@ export async function openModal(e) {
   await renderModal(thisMovieId);
   filmModal.classList.remove('is-hidden');
   overlay.classList.remove('is-hidden');
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
   const closeModalBtn = document.querySelector('.modal-close-btn');
   const addWatchedRef = document.querySelector('.add-watched');
   const addQueueRef = document.querySelector('.add-queue');
   closeModalBtn.addEventListener('click', closeModal);
 
+<<<<<<< Updated upstream
+=======
+  //---Powiadomienia notiflix - dodanie i usunięcię z queue/watched
+>>>>>>> Stashed changes
   const addedToWatched = () => {
     Notiflix.Notify.info(`The movie has been added to watched`);
   };
@@ -38,8 +51,14 @@ export async function openModal(e) {
       });
     }
   }
+<<<<<<< Updated upstream
   if (localStorage.length > 0) {
     if (moviesQueue.find(item => item.id === thisMovieId)) {
+=======
+
+  for (const movieQueue of moviesQueue) {
+    if (String(movieQueue.id) === thisMovieId) {
+>>>>>>> Stashed changes
       addQueueRef.textContent = 'remove from queue';
     }
   }
@@ -68,8 +87,30 @@ export async function openModal(e) {
         removeFromWatched();
       }
     }
+<<<<<<< Updated upstream
     const onQueueClick = async () => {
       console.log(thisMovieId);
+=======
+  };
+
+  //---Kliknięcie w add to queue
+  const onQueueClick = async () => {
+    if (addQueueRef.textContent.toUpperCase() === 'REMOVE FROM QUEUE') {
+      addQueueRef.textContent = 'Add to queue';
+
+      for (const movieQueue of moviesQueue) {
+        if (String(movieQueue.id) === thisMovieId) {
+          const posQ = moviesQueue.map(e => e.id).indexOf(Number(thisMovieId));
+          moviesQueue.splice(posQ, 1);
+          localStorage.setItem('movies-queue', JSON.stringify(moviesQueue));
+          removeFromQueue();
+        }
+      }
+
+      console.log(moviesQueue);
+    } else if (addQueueRef.textContent.toUpperCase() == 'ADD TO QUEUE') {
+      addQueueRef.textContent = 'remove from queue';
+>>>>>>> Stashed changes
       const data = await searchDetails(thisMovieId);
       if (!moviesQueue.find(item => item.id === thisMovieId)) {
         moviesQueue.push(data);
@@ -77,6 +118,7 @@ export async function openModal(e) {
         addedToQueue();
         return;
       }
+<<<<<<< Updated upstream
       //let index = moviesQueue.findIndex(object => object.id === thisMovieId);
       //moviesQueue.splice(index, 1);
       localStorage.setItem('movies-queue', JSON.stringify(moviesQueue));
@@ -86,6 +128,19 @@ export async function openModal(e) {
     addQueueRef.addEventListener('click', onQueueClick);
   };
 }
+=======
+      console.log(moviesQueue);
+    }
+  };
+
+  closeModalBtn.addEventListener('click', closeModal);
+  addWatchedRef.addEventListener('click', () => {
+    onWatchedClick();
+  });
+  addQueueRef.addEventListener('click', onQueueClick);
+}
+
+>>>>>>> Stashed changes
 function closeModal(e) {
   e.preventDefault();
   filmModal.classList.add('is-hidden');
@@ -102,6 +157,11 @@ function onEscKeyPress(e) {
   if (isEscKey) {
     closeModal(e);
   }
+<<<<<<< Updated upstream
+=======
+  //overlay.removeEventListener('click', closeModal);
+  //window.removeEventListener('keydown', onEscKeyPress);
+>>>>>>> Stashed changes
 }
 
 async function renderModal(data) {
@@ -153,6 +213,7 @@ async function renderModal(data) {
     </div>
     <h2 class="modal-movie-about">About </h2>
     <p class="modal-about-text">${overview}</p>
+<<<<<<< Updated upstream
     <ul class = "modal-btn-list">
         <li class = "modal-btn-list-item">
             <button class="modal-movie-btn add-watched" type = "button">add to Watched</button>
@@ -163,4 +224,16 @@ async function renderModal(data) {
     </ul>
         </div>
     </div>`;
+=======
+          <ul class="modal-btn-list">
+            <li class="modal-btn-list-item">
+              <button class="modal-movie-btn add-watched" type="button">add to watched</button>
+            </li>
+            <li class="modal-btn-list-item">
+              <button class="modal-movie-btn add-queue" type="button">add to queue</button>
+            </li>
+          </ul>
+  </div>
+`;
+>>>>>>> Stashed changes
 }

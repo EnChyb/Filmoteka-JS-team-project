@@ -9,9 +9,8 @@
 .movie-card-template:hover,
 .movie-card-template:focus {
   cursor: pointer;
-  transform: scale(1.05);
-  box-shadow: 0px 6px 6px 4px rgba(0, 0, 0, 0.15);
-
+  transform: scale(1.02);
+  box-shadow: 1px 3px 6px 5px rgba(0, 0, 0, 0.15);
 }
 
 @media screen and (min-width: 768px) {

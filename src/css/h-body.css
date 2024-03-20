@@ -18,10 +18,6 @@
   max-width: 100%;
 }
 
-.buttons-pages {
-  margin-top: 40px;
-}
-
 .buttons-pages,
 .pagination-container {
   display: flex;

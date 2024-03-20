@@ -1,20 +1,15 @@
 <div class="modal-filmoteka is-hidden" id="modal-filmoteka"></div>
 <div class="modal-window is-hidden" id="modal-window">
-  <div class="modal-content">
-    <button class="modal-close-btn" type="button" data-modal-close-window>
-      <svg
-        width="30"
-        height="30"
-        viewBox="0 0 30 30"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path d="M8 8L22 22" stroke="black" stroke-width="2"></path>
-        <path d="M8 22L22 8" stroke="black" stroke-width="2"></path>
-      </svg>
-    </button>
+      <button class="modal-close-btn" type="button" data-modal-close-window>
+        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 8L22 22" stroke="black" stroke-width="2"></path>
+          <path d="M8 22L22 8" stroke="black" stroke-width="2"></path>
+        </svg>
+      </button>
+ <div class="modal-content">
 
-    <div class="modal-poster"></div>
+
+  <div class="modal-poster"></div>
 
     <div class="modal-info-film">
       <h1 class="modal-movie-title" id="movie-title"></h1>
@@ -34,15 +29,18 @@
       </div>
       <h2 class="modal-movie-about"></h2>
       <p class="modal-about-text" id="about-text"></p>
+            <ul class="modal-btn-list">
+              <li class="modal-btn-list-item">
+                <button class="modal-movie-btn add-watched" type="button">add to watched</button>
+              </li>
+              <li class="modal-btn-list-item">
+                <button class="modal-movie-btn add-queue" type="button">add to queue</button>
+              </li>
+            </ul>
 
-      <ul class="modal-btn-list">
-        <li class="modal-btn-list-item">
-          <button class="modal-movie-btn add-watched" type="button">add to watched</button>
-        </li>
-        <li class="modal-btn-list-item">
-          <button class="modal-movie-btn add-queue" type="button">add to queue</button>
-        </li>
-      </ul>
+
     </div>
+
   </div>
+
 </div>

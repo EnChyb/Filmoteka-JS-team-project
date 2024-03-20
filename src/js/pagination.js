@@ -8,12 +8,13 @@ import {
 } from './database.js';
 import { openModal } from './modal';
 const photoCard = document.querySelector('.movie-gallery');
+const photoCardRender = document.querySelector('.movie-items');
 const prevButton = document.querySelector('.page-btn.prev');
 const nextButton = document.querySelector('.page-btn.next');
 const paginationContainer = document.querySelector('.pagination-container');
 
 const searchInput = document.querySelector('.main-header-input');
-const searchForm = document.querySelector('.main-header-form');
+export const searchForm = document.querySelector('.main-header-form');
 const failMessage = document.querySelector('.main-header-fail');
 const searchSubmit = document.querySelector('.main-header-submit');
 
@@ -58,7 +59,7 @@ export function selectMovieCards() {
   }
 }
 
-async function fetchItems() {
+export async function fetchItems() {
   optionsCopy = { ...popularOptions };
   optionsCopy.params.page = currentPage;
 
@@ -97,6 +98,14 @@ async function fetchSearch(e) {
 // failMessage.style.opacity = 1;
 
 searchForm.addEventListener('submit', fetchSearch);
+
+//const switchToLibrary = document.querySelector("#switch-library");
+//console.log(switchToLibrary);
+
+//switchToLibrary.addEventListener("click", () => {
+//  searchForm.removeEventListener('submit', fetchSearch);
+//})
+
 // wyświetl karty
 
 export function showItems(items) {

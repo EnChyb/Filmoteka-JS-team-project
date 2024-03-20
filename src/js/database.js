@@ -31,7 +31,7 @@ let pageNum = '1';
 //   loader.classList.add('hidden');
 // }
 
-const searchOptions = {
+export const searchOptions = {
   params: {
     query: keywords,
     include_adult: includeAdult,
@@ -43,7 +43,7 @@ const searchOptions = {
   },
 };
 
-async function searchMovie() {
+export async function searchMovie() {
   try {
     const response = await axios.get(
       'https://api.themoviedb.org/3/search/movie?api_key=a53cba9b0d8796262c7859f0f1e4d0eb',
@@ -52,7 +52,7 @@ async function searchMovie() {
     // loader.classList.remove('hidden');
     // errorElement.classList.add('hidden');
     const database = response.data.results;
-    // console.log(database);
+    return database;
   } catch (error) {
     Notiflix.Notify.failure('Sorry, there was a problem with fetching movies from the server');
     console.log(`searchMovie() error: ${error}`);
@@ -158,8 +158,8 @@ async function languageList() {
 
 // try catch is now inside genresList()
 
-// try {
-//   genresList();
-// } catch (error) {
-//   console.log(error);
-// }
+try {
+  searchMovie();
+} catch (error) {
+  console.log(error);
+}

@@ -24,15 +24,16 @@ export function watchedToLibrary() {
     <p class="movie-name">${title}</p>
     <div class="tags-grade-wrap">
     <p class="movie-tags-year">${genreArray.slice(0, 3).join(', ')} | ${release_date.slice(
-            0,
-            4,
-          )}</p>
+        0,
+        4,
+      )}</p>
     <p class="movie-grade">${vote_average.toFixed(1)}</p>
     </div>
     </div>
     </div>`;
-        })
-        .join('');
+    })
+    .join('');
+
       gallery.insertAdjacentHTML('afterbegin', markup);
 
       //setTimeout(loaderRemove, 1000);
@@ -41,6 +42,7 @@ export function watchedToLibrary() {
       return [];
     }
   }
+  
   const movieCardTemplate = document.querySelectorAll('.movie-card-template');
   movieCardTemplate.forEach(card => {
     card.addEventListener('click', e => {
@@ -49,12 +51,14 @@ export function watchedToLibrary() {
   });
 }
 
+
 export function queueToLibrary() {
   const gallery = document.querySelector('#movie-items-lib');
   console.log(gallery);
   //loaderAdd();
   //const array = JSON.parse(localStorage.getItem('movies-watched')); // parse JSON string to object;
   //console.log(array);
+
   gallery.innerHTML = '';
   if (JSON.parse(localStorage.getItem('movies-queue'))) {
     try {
@@ -83,8 +87,9 @@ export function queueToLibrary() {
     </div>
     </div>
     </div>`;
-        })
-        .join('');
+    })
+    .join('');
+
       gallery.insertAdjacentHTML('afterbegin', markupQueue);
 
       //setTimeout(loaderRemove, 1000);
@@ -100,3 +105,4 @@ export function queueToLibrary() {
     });
   });
 }
+

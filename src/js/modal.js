@@ -46,6 +46,7 @@ export async function openModal(e) {
     console.log(`Error getting watched movie(s) from local storage: ${error}`);
   }
 
+
   try {
     const moviesQueue = JSON.parse(localStorage.getItem('movies-queue')) || [];
     for (const movieQueue of moviesQueue) {

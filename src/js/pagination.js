@@ -80,6 +80,9 @@ async function fetchSearch(e) {
   if (currentPage === 1) {
     e.preventDefault();
   }
+
+  failMessage.style.opacity = 0;
+
   optionsCopy = { ...searchOptions };
   optionsCopy.params.page = currentPage;
 
@@ -90,12 +93,15 @@ async function fetchSearch(e) {
   console.log(items);
   genres = await genresList();
 
+  if (items.length === 0) {
+    failMessage.style.opacity = 1;
+  }
+
   loaderAdd();
   showItems(items);
   selectMovieCards();
+  searchInput.value = '';
 }
-
-// failMessage.style.opacity = 1;
 
 searchForm.addEventListener('submit', fetchSearch);
 
@@ -129,7 +135,9 @@ export function showItems(items) {
     <div class="movie-card-template" data-modal-open-window>
     <h2 id="movie-id" class="is-hidden">${id}</h2>
     <a class="movie-image">
-    <img class="movie-image-detail" src="https://image.tmdb.org/t/p/w500${poster_path}?api_key=a53cba9b0d8796262c7859f0f1e4d0eb"
+    <img class="movie-image-detail"
+    src="https://image.tmdb.org/t/p/w500${poster_path}?api_key=a53cba9b0d8796262c7859f0f1e4d0eb"
+    onerror="this.src='https://cdn.pixabay.com/photo/2019/04/24/21/55/cinema-4153289_960_720.jpg';"
     alt="film-poster" />
     </a>
     <div class="movie-info">
@@ -179,8 +187,6 @@ function showNext() {
     }
     updatePagination();
   } else {
-    // console.log('Sorry, there are no more pages');
-    //notiflix --> Sorki ale nie ma wiecej stron----------------------------------------------------------------
     Notiflix.Notify.failure('Sorry, there are no more pages');
     return;
   }

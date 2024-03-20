@@ -1,11 +1,9 @@
 import Notiflix from 'notiflix';
 import { searchDetails } from './database';
 
-
 const modalDiv=document.querySelector('#modal-window')
 const filmModal = document.querySelector('.modal-content');
 const overlay = document.querySelector('.modal-filmoteka');
-
 
 export async function openModal(e) {
   const thisMovieId = e.currentTarget.querySelector('#movie-id').innerHTML;
@@ -149,9 +147,11 @@ async function renderModal(data) {
     vote_average,
     vote_count,
   } = details;
+
   filmModal.innerHTML = `
-<div class="modal-poster">
-        <img class="movie-image-detail" src="https://image.tmdb.org/t/p/w342${poster_path}?api_key=a53cba9b0d8796262c7859f0f1e4d0eb"
+        <div class="modal-poster">
+        <img class="movie-image-detail"
+        src="https://image.tmdb.org/t/p/w342${poster_path}?api_key=a53cba9b0d8796262c7859f0f1e4d0eb"
         alt="film-poster" />
         </a>
         </div>

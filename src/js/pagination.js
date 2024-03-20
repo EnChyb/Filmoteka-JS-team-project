@@ -99,6 +99,7 @@ async function fetchSearch(e) {
   loaderAdd();
   showItems(items);
   selectMovieCards();
+  searchInput.value = '';
 }
 
 searchForm.addEventListener('submit', fetchSearch);

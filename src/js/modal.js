@@ -1,7 +1,7 @@
 import Notiflix from 'notiflix';
 import { searchDetails } from './database';
 
-const modalDiv=document.querySelector('#modal-window')
+const modalDiv = document.querySelector('#modal-window');
 const filmModal = document.querySelector('.modal-content');
 const overlay = document.querySelector('.modal-filmoteka');
 
@@ -11,13 +11,12 @@ export async function openModal(e) {
   await renderModal(thisMovieId);
   modalDiv.classList.remove('is-hidden');
   overlay.classList.remove('is-hidden');
-  
+
   const closeModalBtn = document.querySelector('.modal-close-btn');
   const addWatchedRef = document.querySelector('.add-watched');
   const addQueueRef = document.querySelector('.add-queue');
 
-  
-  //---Powiadomienia notiflix - dodanie i usunięcię z queue/watched  
+  //---Powiadomienia notiflix - dodanie i usunięcię z queue/watched
   const addedToWatched = () => {
     Notiflix.Notify.info(`The movie has been added to watched`);
   };
@@ -34,20 +33,29 @@ export async function openModal(e) {
     Notiflix.Notify.info(`The movie has been removed from the queue`);
   };
 
-  const moviesWatched = JSON.parse(localStorage.getItem('movies-watched')) || [];
-  const moviesQueue = JSON.parse(localStorage.getItem('movies-queue')) || [];
-
-  //---Jeśli jest coś w local storage, to zmień content buttona i przechowaj
-  for (const movie of moviesWatched) {
-    if (String(movie.id) === thisMovieId) {
-      addWatchedRef.textContent = 'remove from watched';
+  try {
+    const moviesWatched = JSON.parse(localStorage.getItem('movies-watched')) || [];
+    //---Jeśli jest coś w local storage, to zmień content buttona i przechowaj
+    for (const movie of moviesWatched) {
+      if (String(movie.id) === thisMovieId) {
+        addWatchedRef.textContent = 'remove from watched';
+      }
     }
-  }; 
+  } catch (error) {
+    Notiflix.Notify.failure('Failed to get watched movie(s) from local storage');
+    console.log(`Error getting watched movie(s) from local storage: ${error}`);
+  }
 
-  for (const movieQueue of moviesQueue) {
-    if (String(movieQueue.id) === thisMovieId) {
-      addQueueRef.textContent = 'remove from queue';
+  try {
+    const moviesQueue = JSON.parse(localStorage.getItem('movies-queue')) || [];
+    for (const movieQueue of moviesQueue) {
+      if (String(movieQueue.id) === thisMovieId) {
+        addQueueRef.textContent = 'remove from queue';
+      }
     }
+  } catch (error) {
+    Notiflix.Notify.failure('Failed to get queued movie(s) from local storage');
+    console.log(`Error getting queued movie(s) from local storage: ${error}`);
   }
 
   //---Kliknięcie w add to watch
@@ -59,8 +67,13 @@ export async function openModal(e) {
         if (String(movie.id) === thisMovieId) {
           const pos = moviesWatched.map(e => e.id).indexOf(Number(thisMovieId));
           moviesWatched.splice(pos, 1);
-          localStorage.setItem('movies-watched', JSON.stringify(moviesWatched));
-          removeFromWatched();
+          try {
+            localStorage.setItem('movies-watched', JSON.stringify(moviesWatched));
+            removeFromWatched();
+          } catch (error) {
+            Notiflix.Notify.failure('Failed to remove movie from watched');
+            console.log(`onWatchedClick - remove from watched error: ${error}`);
+          }
         }
       }
 
@@ -70,16 +83,20 @@ export async function openModal(e) {
       const data = await searchDetails(thisMovieId);
       if (!moviesWatched.find(item => item.id === thisMovieId)) {
         moviesWatched.push(data);
-        localStorage.setItem('movies-watched', JSON.stringify(moviesWatched));
-        addedToWatched();
+        try {
+          localStorage.setItem('movies-watched', JSON.stringify(moviesWatched));
+          addedToWatched();
+        } catch (error) {
+          Notiflix.Notify.failure('Failed to add movie to watched');
+          console.log(`onWatchedClick - add to watched error: ${error}`);
+        }
       }
       console.log(moviesWatched);
     }
   };
 
-//---Kliknięcie w add to queue
+  //---Kliknięcie w add to queue
   const onQueueClick = async () => {
-
     if (addQueueRef.textContent.toUpperCase() === 'REMOVE FROM QUEUE') {
       addQueueRef.textContent = 'Add to queue';
 
@@ -87,8 +104,13 @@ export async function openModal(e) {
         if (String(movieQueue.id) === thisMovieId) {
           const posQ = moviesQueue.map(e => e.id).indexOf(Number(thisMovieId));
           moviesQueue.splice(posQ, 1);
-          localStorage.setItem('movies-queue', JSON.stringify(moviesQueue));
-          removeFromQueue();
+          try {
+            localStorage.setItem('movies-queue', JSON.stringify(moviesQueue));
+            removeFromQueue();
+          } catch (error) {
+            Notiflix.Notify.failure('Failed to remove movie from queue');
+            console.log(`onQueueClick - remove from queue error: ${error}`);
+          }
         }
       }
 
@@ -98,23 +120,24 @@ export async function openModal(e) {
       const data = await searchDetails(thisMovieId);
       if (!moviesQueue.find(item => item.id === thisMovieId)) {
         moviesQueue.push(data);
-        localStorage.setItem('movies-queue', JSON.stringify(moviesQueue));
-        addedToQueue();
+        try {
+          localStorage.setItem('movies-queue', JSON.stringify(moviesQueue));
+          addedToQueue();
+        } catch (error) {
+          Notiflix.Notify.failure('Failed to add movie to queue');
+          console.log(`onQueueClick - add to queue error: ${error}`);
+        }
       }
       console.log(moviesQueue);
     }
-};
+  };
 
   closeModalBtn.addEventListener('click', closeModal);
   addWatchedRef.addEventListener('click', () => {
     onWatchedClick();
-
   });
-  addQueueRef.addEventListener('click', onQueueClick);  
-
-
+  addQueueRef.addEventListener('click', onQueueClick);
 }
-
 
 function closeModal(e) {
   e.preventDefault();
@@ -130,10 +153,9 @@ function onEscKeyPress(e) {
   const isEscKey = e.code === ESC_KEY_CODE;
   if (isEscKey) {
     closeModal(e);
-
   }
-    //overlay.removeEventListener('click', closeModal);
-    //window.removeEventListener('keydown', onEscKeyPress);
+  //overlay.removeEventListener('click', closeModal);
+  //window.removeEventListener('keydown', onEscKeyPress);
 }
 async function renderModal(data) {
   const details = await searchDetails(data);
@@ -188,6 +210,4 @@ async function renderModal(data) {
           </ul>
   </div>
 `;
-};
-
-
+}

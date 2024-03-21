@@ -4,6 +4,7 @@
   max-width: 280px;
   border: none;
   transition: transform 250ms ease;
+  margin-bottom: 10px;
 }
 
 .movie-card-template:hover,
